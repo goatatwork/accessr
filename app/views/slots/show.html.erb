@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Slot number:</strong>
+  <%= @slot.slot_number %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @slot.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @slot.description %>
+</p>
+
+<p>
+  <strong>Switch:</strong>
+  <%= @slot.switch_id %>
+</p>
+
+<%= link_to 'Edit', edit_slot_path(@slot) %> |
+<%= link_to 'Back', slots_path %>

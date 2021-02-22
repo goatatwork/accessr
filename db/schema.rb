@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_220802) do
+ActiveRecord::Schema.define(version: 2021_02_22_223036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ports", force: :cascade do |t|
+    t.integer "port_number"
+    t.string "name"
+    t.text "description"
+    t.string "portable_type", null: false
+    t.bigint "portable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portable_type", "portable_id"], name: "index_ports_on_portable"
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.integer "slot_number"
+    t.string "name"
+    t.text "description"
+    t.bigint "switch_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["switch_id"], name: "index_slots_on_switch_id"
+  end
 
   create_table "switches", force: :cascade do |t|
     t.string "name"
@@ -24,4 +45,5 @@ ActiveRecord::Schema.define(version: 2021_02_22_220802) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "slots", "switches"
 end
