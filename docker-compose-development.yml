@@ -1,0 +1,29 @@
+version: '3.8'
+
+networks:
+  ops1:
+    external: false
+
+volumes:
+  db_data:
+  ruby_bundle:
+
+services:
+  web:
+    image: goatatwork/rails:6.1-postgresql
+    volumes:
+      - ruby_bundle:/usr/local/bundle
+      - ./:/app
+    working_dir: /app
+    networks:
+      - ops1
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - ops1
