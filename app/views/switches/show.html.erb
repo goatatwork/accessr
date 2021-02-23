@@ -29,6 +29,14 @@
           <% end %>
         </ul>
     </div>
+    <div class="col">
+        <ul class="list-unstyled">
+          <li><strong>Ports</strong></li>
+          <% @switch.ports.each do |port| %>
+            <li><%= link_to port.port_number, port_path(port) %></li>
+          <% end %>
+        </ul>
+    </div>
 </div>
 
 <%= link_to 'Edit', edit_switch_path(@switch) %> |
