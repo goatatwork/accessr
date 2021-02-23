@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= switch.name %>
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <%= switch.manufacturer %> <%= switch.model %>
+    </h6>
+
+    <p>
+      <ul class="list-unstyled">
+        <li>Manage at <%= switch.management_ip %></li>
+        <li><%= pluralize(switch.slots.count, 'slot') %></li>
+        <li><%= pluralize(switch.ports.count, 'port') %></li>
+      </ul>
+
+    </p>
+  </div>
+</div>
