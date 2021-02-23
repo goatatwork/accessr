@@ -20,5 +20,16 @@
   <%= @switch.management_ip %>
 </p>
 
+<div class="row">
+    <div class="col">
+        <ul class="list-unstyled">
+          <li><strong>Slots</strong></li>
+          <% @switch.slots.each do |slot| %>
+            <li><%= link_to slot.slot_number, slot_path(slot) %></li>
+          <% end %>
+        </ul>
+    </div>
+</div>
+
 <%= link_to 'Edit', edit_switch_path(@switch) %> |
 <%= link_to 'Back', switches_path %>

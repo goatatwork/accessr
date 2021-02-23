@@ -1,6 +1,6 @@
 <h1>Editing Slot</h1>
 
-<%= render 'form', slot: @slot %>
+<%= render 'form', {switch: @slot.switch, slot: @slot} %>
 
 <%= link_to 'Show', @slot %> |
-<%= link_to 'Back', slots_path %>
+<%= link_to 'Back', switch_slots_path(@slot.switch) %>

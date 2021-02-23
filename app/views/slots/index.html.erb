@@ -20,7 +20,7 @@
         <td><%= slot.name %></td>
         <td><%= slot.description %></td>
         <td><%= slot.switch_id %></td>
-        <td><%= link_to 'Show', slot %></td>
+        <td><%= link_to 'Show', slot_path(slot) %></td>
         <td><%= link_to 'Edit', edit_slot_path(slot) %></td>
         <td><%= link_to 'Destroy', slot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Slot', new_slot_path %>
+<%= link_to 'New Slot', new_switch_slot_path %>
