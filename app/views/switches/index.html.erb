@@ -2,13 +2,15 @@
 
 <h1>Switches</h1>
 
-<table>
+<table class="table table-primary">
   <thead>
     <tr>
       <th>Name</th>
       <th>Manufacturer</th>
       <th>Model</th>
       <th>Management ip</th>
+      <th>Slots</th>
+      <th>Ports</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +22,8 @@
         <td><%= switch.manufacturer %></td>
         <td><%= switch.model %></td>
         <td><%= switch.management_ip %></td>
+        <td><%= switch.slots.count %></td>
+        <td><%= switch.ports.count %></td>
         <td><%= link_to 'Show', switch %></td>
         <td><%= link_to 'Edit', edit_switch_path(switch) %></td>
         <td><%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
