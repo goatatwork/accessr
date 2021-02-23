@@ -3,17 +3,25 @@
     <h5 class="card-title">
       <%= switch.name %>
     </h5>
-    <h6 class="card-subtitle mb-2 text-muted">
+    <h6 class="card-subtitle mb-4 text-muted">
       <%= switch.manufacturer %> <%= switch.model %>
     </h6>
 
-    <p>
-      <ul class="list-unstyled">
-        <li>Manage at <%= switch.management_ip %></li>
-        <li><%= pluralize(switch.slots.count, 'slot') %></li>
-        <li><%= pluralize(switch.ports.count, 'port') %></li>
-      </ul>
+    <div class="row">
+        <div class="col-auto">
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item">Manage at <%= switch.management_ip %></li>
+            <li class="list-group-item"><%= pluralize(switch.slots.count, 'slot') %></li>
+            <li class="list-group-item"><%= pluralize(switch.ports.count, 'port') %></li>
+          </ul>
+        </div>
+    </div>
 
-    </p>
+    <div class="row">
+        <div class="col">
+          <%= link_to "Edit This Switch", edit_switch_path(switch) %>
+        </div>
+    </div>
+
   </div>
 </div>

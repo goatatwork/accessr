@@ -18,13 +18,13 @@
   <tbody>
     <% @switches.each do |switch| %>
       <tr>
-        <td><%= switch.name %></td>
+        <td><%= link_to switch.name, switch %></td>
         <td><%= switch.manufacturer %></td>
         <td><%= switch.model %></td>
         <td><%= switch.management_ip %></td>
         <td><%= switch.slots.count %></td>
         <td><%= switch.ports.count %></td>
-        <td><%= link_to 'Show', switch %></td>
+        <td></td>
         <td><%= link_to 'Edit', edit_switch_path(switch) %></td>
         <td><%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Switch', new_switch_path %>
+<%= link_to 'New Switch', new_switch_path, class: "btn btn-success", type: "button" %>
