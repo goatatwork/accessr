@@ -3,7 +3,13 @@ class PortsController < ApplicationController
 
   # GET /ports or /ports.json
   def index
-    @ports = Port.all
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @ports = @switch.ports
+    elsif params[:slot_id] && @slot = Slot.find_by_id(params[:slot_id])
+      @ports = @slot.ports
+    else
+      @ports = Port.all
+    end
   end
 
   # GET /ports/1 or /ports/1.json

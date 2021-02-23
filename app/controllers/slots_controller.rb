@@ -3,7 +3,11 @@ class SlotsController < ApplicationController
 
   # GET /slots or /slots.json
   def index
-    @slots = Slot.all
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @slots = @switch.slots
+    else
+      @slots = Slot.all
+    end
   end
 
   # GET /slots/1 or /slots/1.json
