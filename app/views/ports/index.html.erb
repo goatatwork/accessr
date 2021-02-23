@@ -30,4 +30,10 @@
 
 <br>
 
-<%= link_to 'New Port', new_port_path %>
+<% if params[:switch_id] %>
+  <%= link_to 'New Port', new_switch_port_path %>
+<% end %>
+
+<% if params[:slot_id] %>
+  <%= link_to 'New Port', new_slot_port_path %>
+<% end %>

@@ -21,4 +21,10 @@
 </p>
 
 <%= link_to 'Edit', edit_port_path(@port) %> |
-<%= link_to 'Back', ports_path %>
+<% if @port.portable_type == 'Switch' %>
+  <%= link_to 'Back To Switch', switch_ports_path(@port.switch) %>
+<% end %>
+
+<% if @port.portable_type == 'Slot' %>
+  <%= link_to 'Back To Port', slot_ports_path(@port.slot) %>
+<% end %>
