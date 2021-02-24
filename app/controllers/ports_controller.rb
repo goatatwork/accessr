@@ -28,7 +28,13 @@ class PortsController < ApplicationController
 
   # POST /ports or /ports.json
   def create
-    @port = Port.new(port_params)
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @port = @switch.ports.new(port_params)
+    end
+
+    if params[:slot_id] && @slot = Slot.find_by_id(params[:slot_id])
+      @port = @slot.ports.new(port_params)
+    end
 
     respond_to do |format|
       if @port.save
@@ -80,6 +86,6 @@ class PortsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def port_params
-      params.require(:port).permit(:port_number, :name, :description, :portable_id, :portable_type)
+      params.require(:port).permit(:port_number, :name, :description)
     end
 end

@@ -26,7 +26,9 @@ class SlotsController < ApplicationController
 
   # POST /slots or /slots.json
   def create
-    @slot = Slot.new(slot_params)
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @slot = @switch.slots.new(slot_params)
+    end
 
     respond_to do |format|
       if @slot.save
