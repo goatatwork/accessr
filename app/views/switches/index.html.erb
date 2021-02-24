@@ -6,11 +6,11 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Manufacturer</th>
-      <th>Model</th>
+      <th>Switch Type</th>
       <th>Management ip</th>
       <th>Slots</th>
       <th>Ports</th>
+      <th>Total Ports</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,10 +19,10 @@
     <% @switches.each do |switch| %>
       <tr>
         <td><%= link_to switch.name, switch %></td>
-        <td><%= switch.manufacturer %></td>
-        <td><%= switch.model %></td>
+        <td><%= switch.manufacturer %> | <%= switch.model %></td>
         <td><%= switch.management_ip %></td>
         <td><%= switch.slots.count %></td>
+        <td><%= switch.ports.count %></td>
         <td><%= switch.total_number_of_ports %></td>
         <td></td>
         <td><%= link_to 'Edit', edit_switch_path(switch) %></td>
