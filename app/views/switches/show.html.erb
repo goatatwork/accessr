@@ -7,23 +7,17 @@
     <div class="col">
       <div class="row">
           <div class="col">
-            <h4>Slots</h4>
+            <span class="h4">Slots</span>
+            <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
             <%= render "/slots/slots_table", slots: @switch.slots %>
           </div>
       </div>
       <div class="row">
           <div class="col">
-            <h4>Onboard Ports</h4>
+            <span class="h4">Onboard Ports</span>
+            <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success float-end", type: "button" %>
             <%= render "/ports/ports_table", ports: @switch.ports %>
           </div>
       </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col">
-        <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success", type: "button" %>
-        <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success", type: "button" %>
-    </div>
-</div>
-<%= link_to 'Back', switches_path %>
