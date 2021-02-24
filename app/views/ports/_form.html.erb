@@ -1,4 +1,4 @@
-<%= form_with(model: port) do |form| %>
+<%= form_with(model: [portable, port]) do |form| %>
   <% if port.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(port.errors.count, "error") %> prohibited this port from being saved:</h2>
