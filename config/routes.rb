@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :addresses
+  resources :locations
+  resources :customers
   resources :switches do
     resources :slots, only: [:index, :new, :create]
     resources :ports, only: [:index, :new, :create]
