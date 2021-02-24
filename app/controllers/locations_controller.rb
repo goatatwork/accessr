@@ -3,7 +3,11 @@ class LocationsController < ApplicationController
 
   # GET /locations or /locations.json
   def index
-    @locations = Location.all
+    if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+      @locations = @customer.locations
+    else
+      @locations = Location.all
+    end
   end
 
   # GET /locations/1 or /locations/1.json
@@ -12,6 +16,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
+    @customer = Customer.find_by_id(params[:customer_id])
     @location = Location.new
   end
 
@@ -21,7 +26,9 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
-    @location = Location.new(location_params)
+    if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+      @location = @customer.locations.new(location_params)
+    end
 
     respond_to do |format|
       if @location.save

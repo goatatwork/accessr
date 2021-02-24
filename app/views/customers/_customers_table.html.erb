@@ -1,0 +1,20 @@
+<table class="table table-primary">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Company name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td><%= link_to customer.full_name, customer %></td>
+        <td><%= customer.company_name %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

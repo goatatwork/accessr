@@ -1,0 +1,20 @@
+<table class="table table-primary">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Customer</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% locations.each do |location| %>
+      <tr>
+        <td><%= link_to location.name, location %></td>
+        <td><%= location.customer_id %></td>
+        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
