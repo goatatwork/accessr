@@ -22,14 +22,9 @@
 
 <div class="row">
   <div class="col">
-    <ul class="list-unstyled">
-      <li><strong>Ports</strong></li>
-      <% @slot.ports.each do |port| %>
-        <li><%= link_to port.port_number, port_path(port) %></li>
-      <% end %>
-    </ul>
+    <%= render "/ports/ports_table", ports: @slot.ports %>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_slot_path(@slot) %> |
+<%= link_to 'Edit', edit_slot_path(@slot), class: 'btn btn-success' %> |
 <%= link_to 'Back', switch_slots_path(@slot.switch) %>
