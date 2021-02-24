@@ -16,6 +16,7 @@ class SlotsController < ApplicationController
 
   # GET /slots/new
   def new
+    @switch = Switch.find_by_id(params[:switch_id])
     @slot = Slot.new
   end
 
