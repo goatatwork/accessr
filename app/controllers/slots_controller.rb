@@ -1,7 +1,7 @@
 class SlotsController < ApplicationController
   before_action :set_slot, only: %i[ show edit update destroy ]
 
-  # GET /slots or /slots.json
+  # This results in anything other than a valid switch ID to display all slots.
   def index
     if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
       @slots = @switch.slots
