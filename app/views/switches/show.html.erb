@@ -8,12 +8,7 @@
 
 <div class="row">
     <div class="col">
-        <ul class="list-unstyled">
-          <li><strong>Slots</strong></li>
-          <% @switch.slots.each do |slot| %>
-            <li><%= link_to slot.slot_number, slot_path(slot) %></li>
-          <% end %>
-        </ul>
+      <%= render "/slots/slots_table", slots: @switch.slots %>
     </div>
     <div class="col">
         <ul class="list-unstyled">

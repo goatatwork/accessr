@@ -1,32 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Slots</h1>
+<h2>Slots in <%= link_to @switch.name, @switch, class: "text-dark text-decoration-none" %></h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Slot number</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Switch</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @slots.each do |slot| %>
-      <tr>
-        <td><%= slot.slot_number %></td>
-        <td><%= slot.name %></td>
-        <td><%= slot.description %></td>
-        <td><%= slot.switch_id %></td>
-        <td><%= link_to 'Show', slot_path(slot) %></td>
-        <td><%= link_to 'Edit', edit_slot_path(slot) %></td>
-        <td><%= link_to 'Destroy', slot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "slots_table", slots: @slots %>
 
 <br>
 

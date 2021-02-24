@@ -11,8 +11,12 @@
         <div class="col-auto">
           <ul class="list-group list-group-flush mb-4">
             <li class="list-group-item">Manage at <%= switch.management_ip %></li>
-            <li class="list-group-item"><%= pluralize(switch.slots.count, 'slot') %></li>
-            <li class="list-group-item"><%= pluralize(switch.ports.count, 'port') %></li>
+            <li class="list-group-item">
+              <%= link_to pluralize(switch.slots.count, 'slot'), switch_slots_path(switch) %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to pluralize(switch.ports.count, 'port'), switch_ports_path(switch) %>
+            </li>
           </ul>
         </div>
     </div>
