@@ -4,19 +4,19 @@
     <div class="col-auto">
       <%= render "switch_card", {switch: @switch} %>
     </div>
-</div>
-
-<div class="row">
     <div class="col">
-      <%= render "/slots/slots_table", slots: @switch.slots %>
-    </div>
-    <div class="col">
-        <ul class="list-unstyled">
-          <li><strong>Ports</strong></li>
-          <% @switch.ports.each do |port| %>
-            <li><%= link_to port.port_number, port_path(port) %></li>
-          <% end %>
-        </ul>
+      <div class="row">
+          <div class="col">
+            <h4>Slots</h4>
+            <%= render "/slots/slots_table", slots: @switch.slots %>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            <h4>Ports</h4>
+            <%= render "/ports/ports_table", ports: @switch.ports %>
+          </div>
+      </div>
     </div>
 </div>
 
