@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ports</h1>
+
+<%= render "ports_table", ports: @ports %>
+
+<br>
+
+<% if params[:switch_id] %>
+  <%= link_to 'New Port', new_switch_port_path %>
+<% end %>
+
+<% if params[:slot_id] %>
+  <%= link_to 'New Port', new_slot_port_path %>
+<% end %>

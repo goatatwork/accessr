@@ -1,0 +1,22 @@
+<table class="table table-primary">
+  <thead>
+    <tr>
+      <th>Port Number & Name</th>
+      <th>Description</th>
+      <th>Belongs To</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% ports.each do |port| %>
+      <tr>
+        <td><%= link_to "#{port.port_number} #{port.name}", port %>
+        <td><%= port.description %></td>
+        <td><%= link_to port.portable.name, port.portable %>
+        <td><%= link_to 'Edit', edit_port_path(port) %></td>
+        <td><%= link_to 'Destroy', port, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
