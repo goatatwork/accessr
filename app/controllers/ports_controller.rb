@@ -1,5 +1,6 @@
 class PortsController < ApplicationController
   before_action :set_port, only: %i[ show edit update destroy ]
+  before_action :set_portable, only: %i[ new ]
 
   # GET /ports or /ports.json
   def index
@@ -66,6 +67,15 @@ class PortsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_port
       @port = Port.find(params[:id])
+    end
+
+    def set_portable
+      if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+        @portable = @switch
+      end
+      if params[:slot_id] && @slot = Slot.find_by_id(params[:slot_id])
+        @portable = @slot
+      end
     end
 
     # Only allow a list of trusted parameters through.
