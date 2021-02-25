@@ -10,7 +10,7 @@ volumes:
 
 services:
   web:
-    image: goatatwork/rails:6.1-postgresql
+    image: goatatwork/rails:6.1.3-postgresql
     volumes:
       - ruby_bundle:/usr/local/bundle
       - ./:/app
