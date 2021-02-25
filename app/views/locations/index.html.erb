@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Locations</h1>
+<div class="row">
+    <div class="col">
+      <span class="h4">Service Locations</span>
+      <%= link_to 'Add A Service Location', new_customer_location_path(@customer), class: "btn btn-success float-end", type: "button" %>
+    </div>
+</div>
 
 <%= render "locations_table", locations: @locations %>

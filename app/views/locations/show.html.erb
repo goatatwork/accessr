@@ -10,5 +10,15 @@
   <%= @location.customer_id %>
 </p>
 
+<div class="row">
+    <div class="col-auto">
+      <% if @location.address %>
+        <%= render "/addresses/address_card", address: @location.address %>
+      <% else %>
+        no address
+      <% end %>
+    </div>
+</div>
+
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', customer_locations_path(@location.customer) %>

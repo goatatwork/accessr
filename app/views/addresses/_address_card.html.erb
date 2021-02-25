@@ -10,15 +10,16 @@
     <div class="row">
         <div class="col-auto">
           <ul class="list-group list-group-flush mb-4">
-            <li class="list-group-item">address1</li>
-            <li class="list-group-item">address2</li>
+            <li class="list-group-item"><%= address.address1 %></li>
+            <li class="list-group-item"><%= address.address2 %></li>
+            <li class="list-group-item"><%= address.city %>, <%= address.state %>  <%= address.city %></li>
           </ul>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-          <%= link_to "Edit This Address", '#' %>
+          <%= link_to "Edit This Address", edit_address_path(address) %>
         </div>
     </div>
 
