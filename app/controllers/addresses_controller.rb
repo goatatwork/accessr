@@ -1,0 +1,86 @@
+class AddressesController < ApplicationController
+  before_action :set_address, only: %i[ show edit update destroy ]
+  before_action :set_addressable, only: %i[ new ]
+
+  # GET /addresses or /addresses.json
+  def index
+    @addresses = Address.all
+  end
+
+  # GET /addresses/1 or /addresses/1.json
+  def show
+  end
+
+  # GET /addresses/new
+  def new
+    @address = Address.new
+  end
+
+  # GET /addresses/1/edit
+  def edit
+  end
+
+  # POST /addresses or /addresses.json
+  def create
+    if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+      @address = @customer.build_address(address_params)
+    end
+
+    if params[:location_id] && @location = Location.find_by_id(params[:location_id])
+      @address = @location.build_address(address_params)
+    end
+
+    respond_to do |format|
+      if @address.save
+        format.html { redirect_to @address, notice: "Address was successfully created." }
+        format.json { render :show, status: :created, location: @address }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /addresses/1 or /addresses/1.json
+  def update
+    respond_to do |format|
+      if @address.update(address_params)
+        format.html { redirect_to @address, notice: "Address was successfully updated." }
+        format.json { render :show, status: :ok, location: @address }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /addresses/1 or /addresses/1.json
+  def destroy
+    @address.destroy
+    respond_to do |format|
+      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_address
+      @address = Address.find(params[:id])
+    end
+
+    def set_addressable
+      if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+        @addressable = @customer
+      end
+
+      if params[:location_id] && @location = Location.find_by_id(params[:location_id])
+        @addressable = @location
+      end
+    end
+
+    # Only allow a list of trusted parameters through.
+    def address_params
+      params.require(:address).permit(:address1, :address2, :city, :state, :postal_code, :addressable_id, :addressable_type)
+    end
+end
