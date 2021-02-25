@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: %i[ show edit update destroy ]
+  before_action :set_addressable, only: %i[ new ]
 
   # GET /addresses or /addresses.json
   def index
@@ -21,7 +22,13 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
-    @address = Address.new(address_params)
+    if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+      @address = @customer.build_address(address_params)
+    end
+
+    if params[:location_id] && @location = Location.find_by_id(params[:location_id])
+      @address = @location.build_address(address_params)
+    end
 
     respond_to do |format|
       if @address.save
@@ -60,6 +67,16 @@ class AddressesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_address
       @address = Address.find(params[:id])
+    end
+
+    def set_addressable
+      if params[:customer_id] && @customer = Customer.find_by_id(params[:customer_id])
+        @addressable = @customer
+      end
+
+      if params[:location_id] && @location = Location.find_by_id(params[:location_id])
+        @addressable = @location
+      end
     end
 
     # Only allow a list of trusted parameters through.

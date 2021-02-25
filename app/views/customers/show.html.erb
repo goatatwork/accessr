@@ -15,5 +15,15 @@
   <%= @customer.company_name %>
 </p>
 
+<% if @customer.address %>
+  <div class="row">
+      <div class="col-auto">
+        <%= render "/addresses/address_card", address: @customer.address %>
+      </div>
+  </div>
+<% end %>
+
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
+
+<%= link_to "Create address for #{@customer.full_name}", new_customer_address_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
