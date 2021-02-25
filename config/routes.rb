@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :ports, only: [:index, :new, :create]
   end
 
-  resources :ports, only: [:show, :edit, :update, :destroy]
+  resources :ports, only: [:index, :show, :edit, :update, :destroy]
 
   root 'static_pages#home'
 end
