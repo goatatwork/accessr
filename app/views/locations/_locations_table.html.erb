@@ -11,7 +11,7 @@
     <% locations.each do |location| %>
       <tr>
         <td><%= link_to location.name, location %></td>
-        <td><%= location.customer_id %></td>
+        <td><%= link_to location.customer.full_name, location.customer %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

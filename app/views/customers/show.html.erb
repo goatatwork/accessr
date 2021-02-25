@@ -1,27 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
-
-<p>
-  <strong>Company name:</strong>
-  <%= @customer.company_name %>
-</p>
-
-<% if @customer.address %>
-  <div class="row">
-      <div class="col-auto">
-        <%= render "/addresses/address_card", address: @customer.address %>
+<div class="row">
+    <div class="col-auto">
+      <%= render "customer_card", customer: @customer %>
+      <% if @customer.address %>
+        <div class="row">
+            <div class="col">
+              <%= render "/addresses/address_card", address: @customer.address %>
+            </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <div class="row">
+          <div class="col">
+            <span class="h4">Service Locations</span>
+            <%= link_to 'Add A Service Location', new_customer_location_path(@customer), class: "btn btn-success float-end", type: "button" %>
+            <%= render "/locations/locations_table", locations: @customer.locations %>
+          </div>
       </div>
-  </div>
-<% end %>
+    </div>
+</div>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 

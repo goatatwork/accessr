@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses, only: [:index, :show, :edit, :update, :destroy]
+  resources :locations, only: [:index]
 
 #####
 
