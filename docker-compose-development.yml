@@ -14,6 +14,7 @@ services:
     volumes:
       - ruby_bundle:/usr/local/bundle
       - ./:/app
+      - /Users/tool/.ssh:/root/.ssh
     working_dir: /app
     networks:
       - ops1
