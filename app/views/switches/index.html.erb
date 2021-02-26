@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Switches</h1>
+<div class="row">
+    <div class="col">
+        <span class="h4">Switches</span>
+        <%= link_to 'Add A Switch', new_switch_path, class: "btn btn-success float-end", type: "button" %>
+    </div>
+</div>
 
 <%= render "switches_table", switches: @switches %>
-
-<br>
-
-<%= link_to 'New Switch', new_switch_path, class: "btn btn-success", type: "button" %>
