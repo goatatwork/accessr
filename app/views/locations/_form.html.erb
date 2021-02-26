@@ -24,6 +24,11 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-success' %>
+    <% if location.persisted? %>
+      <%= link_to 'Cancel', customer_path(@location.customer), class: 'btn btn-danger', type: 'button' %>
+    <% else %>
+      <%= link_to 'Cancel', customer_path(@customer), class: 'btn btn-danger', type: 'button' %>
+    <% end %>
   </div>
 <% end %>

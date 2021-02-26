@@ -2,15 +2,11 @@
 
 <div class="row">
     <div class="col-auto">
+
       <%= render "customer_card", customer: @customer %>
-      <% if @customer.address %>
-        <div class="row">
-            <div class="col">
-              <%= render "/addresses/address_card", address: @customer.address %>
-            </div>
-        </div>
-      <% end %>
+
     </div>
+
     <div class="col">
       <div class="row">
           <div class="col">
@@ -21,8 +17,3 @@
       </div>
     </div>
 </div>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-
-<%= link_to "Create address for #{@customer.full_name}", new_customer_address_path(@customer) %> |
-<%= link_to 'Back', customers_path %>

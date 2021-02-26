@@ -1,6 +1,7 @@
-<h1>Editing Location</h1>
+<div class="row mt-4 mb-5">
+    <div class="col">
+        <span class="h4">Edit Service Location for <%= @location.customer.full_name %></span>
+    </div>
+</div>
 
 <%= render 'form', location: @location %>
-
-<%= link_to 'Show', @location %> |
-<%= link_to 'Back', locations_path %>
