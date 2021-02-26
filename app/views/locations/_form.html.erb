@@ -24,6 +24,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-success' %>
+    <%= link_to 'Cancel', customer_path(@customer), class: 'btn btn-danger', type: 'button' %>
   </div>
 <% end %>
