@@ -18,10 +18,12 @@ class LocationsController < ApplicationController
   def new
     @customer = Customer.find_by_id(params[:customer_id])
     @location = Location.new
+    @address = @location.build_address
   end
 
   # GET /locations/1/edit
   def edit
+    @address = @location.build_address if !@location.address
   end
 
   # POST /locations or /locations.json

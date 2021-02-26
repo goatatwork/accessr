@@ -18,6 +18,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
+    @address = @customer.build_address if !@customer.address
   end
 
   # POST /customers or /customers.json

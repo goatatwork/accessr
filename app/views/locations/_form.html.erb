@@ -11,9 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row">
+      <div class="col-auto">
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+          <%= form.label :name %>
+        </div>
+      </div>
+      <div class="col-auto">
+        <%= render "/addresses/nested_form", form: form %>
+      </div>
   </div>
 
   <div class="actions">
