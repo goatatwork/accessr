@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Slots in <%= link_to @switch.name, @switch, class: "text-dark text-decoration-none" %></h2>
+<div class="row">
+    <div class="col">
+      <span class="h4">Slots In <%= @switch.name %></span>
+      <%= link_to 'Add A Slot', new_switch_slot_path, class: 'btn btn-success float-end', type: 'button' %>
+    </div>
+</div>
 
 <%= render "slots_table", slots: @slots %>
-
-<br>
-
-<%= link_to 'New Slot', new_switch_slot_path %>
