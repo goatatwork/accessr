@@ -1,29 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Dhcp Servers</h1>
+<div class="row">
+    <div class="col">
+        <span class="h4">DHCP Servers</span>
+        <%= link_to 'Add A DHCP Server', new_dhcp_server_path, class: 'btn btn-success float-end', type: 'button' %>
+    </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Server type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dhcp_servers.each do |dhcp_server| %>
-      <tr>
-        <td><%= dhcp_server.name %></td>
-        <td><%= dhcp_server.server_type %></td>
-        <td><%= link_to 'Show', dhcp_server %></td>
-        <td><%= link_to 'Edit', edit_dhcp_server_path(dhcp_server) %></td>
-        <td><%= link_to 'Destroy', dhcp_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Dhcp Server', new_dhcp_server_path %>
+<%= render 'dhcp_servers_table', dhcp_servers: @dhcp_servers %>
