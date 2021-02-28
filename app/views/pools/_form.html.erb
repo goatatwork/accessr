@@ -1,4 +1,4 @@
-<%= form_with(model: pool) do |form| %>
+<%= form_with(model: [@subnet, @pool]) do |form| %>
   <% if pool.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(pool.errors.count, "error") %> prohibited this pool from being saved:</h2>

@@ -1,4 +1,4 @@
-<%= form_with(model: shared_network) do |form| %>
+<%= form_with(model: [dhcp_server, shared_network] ) do |form| %>
   <% if shared_network.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shared_network.errors.count, "error") %> prohibited this shared_network from being saved:</h2>

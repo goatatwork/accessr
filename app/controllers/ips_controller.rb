@@ -3,7 +3,11 @@ class IpsController < ApplicationController
 
   # GET /ips or /ips.json
   def index
-    @ips = Ip.all
+    if params[:pool_id] && @pool = Pool.find_by_id(params[:pool_id])
+      @ips = @pool.ips
+    else
+      @ips = Ip.all
+    end
   end
 
   # GET /ips/1 or /ips/1.json
@@ -12,6 +16,7 @@ class IpsController < ApplicationController
 
   # GET /ips/new
   def new
+    @pool = Pool.find_by_id(params[:pool_id])
     @ip = Ip.new
   end
 
@@ -21,7 +26,9 @@ class IpsController < ApplicationController
 
   # POST /ips or /ips.json
   def create
-    @ip = Ip.new(ip_params)
+    if params[:pool_id] && @pool = Pool.find_by_id(params[:pool_id])
+      @ip = @pool.ips.new(ip_params)
+    end
 
     respond_to do |format|
       if @ip.save

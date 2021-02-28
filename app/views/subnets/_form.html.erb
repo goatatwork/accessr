@@ -1,4 +1,4 @@
-<%= form_with(model: subnet) do |form| %>
+<%= form_with(model: [shared_network, subnet]) do |form| %>
   <% if subnet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(subnet.errors.count, "error") %> prohibited this subnet from being saved:</h2>

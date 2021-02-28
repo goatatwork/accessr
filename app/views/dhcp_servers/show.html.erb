@@ -10,5 +10,4 @@
   <%= @dhcp_server.server_type %>
 </p>
 
-<%= link_to 'Edit', edit_dhcp_server_path(@dhcp_server) %> |
-<%= link_to 'Back', dhcp_servers_path %>
+<%= link_to 'Shared Networks', dhcp_server_shared_networks_path(@dhcp_server) %>

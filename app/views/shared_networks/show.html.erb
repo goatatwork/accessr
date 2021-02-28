@@ -15,5 +15,4 @@
   <%= @shared_network.dhcp_server_id %>
 </p>
 
-<%= link_to 'Edit', edit_shared_network_path(@shared_network) %> |
-<%= link_to 'Back', shared_networks_path %>
+<%= link_to 'Add A Subnet', new_shared_network_subnet_path(@shared_network) %>

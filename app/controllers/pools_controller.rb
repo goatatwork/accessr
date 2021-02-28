@@ -3,7 +3,11 @@ class PoolsController < ApplicationController
 
   # GET /pools or /pools.json
   def index
-    @pools = Pool.all
+    if params[:subnet_id] && @subnet = Subnet.find_by_id(params[:subnet_id])
+      @pools = @subnet.pools
+    else
+      @pools = Pool.all
+    end
   end
 
   # GET /pools/1 or /pools/1.json
@@ -12,6 +16,7 @@ class PoolsController < ApplicationController
 
   # GET /pools/new
   def new
+    @subnet = Subnet.find_by_id(params[:subnet_id])
     @pool = Pool.new
   end
 
@@ -21,7 +26,9 @@ class PoolsController < ApplicationController
 
   # POST /pools or /pools.json
   def create
-    @pool = Pool.new(pool_params)
+    if params[:subnet_id] && @subnet = Subnet.find_by_id(params[:subnet_id])
+      @pool = @subnet.pools.new(pool_params)
+    end
 
     respond_to do |format|
       if @pool.save

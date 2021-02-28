@@ -3,7 +3,8 @@ class SharedNetworksController < ApplicationController
 
   # GET /shared_networks or /shared_networks.json
   def index
-    @shared_networks = SharedNetwork.all
+    @dhcp_server = DhcpServer.find_by_id(params[:dhcp_server_id])
+    @shared_networks = @dhcp_server.shared_networks
   end
 
   # GET /shared_networks/1 or /shared_networks/1.json
@@ -12,6 +13,7 @@ class SharedNetworksController < ApplicationController
 
   # GET /shared_networks/new
   def new
+    @dhcp_server = DhcpServer.find_by_id(params[:dhcp_server_id])
     @shared_network = SharedNetwork.new
   end
 
@@ -21,7 +23,9 @@ class SharedNetworksController < ApplicationController
 
   # POST /shared_networks or /shared_networks.json
   def create
-    @shared_network = SharedNetwork.new(shared_network_params)
+    if params[:dhcp_server_id] && @dhcp_server = DhcpServer.find_by_id(params[:dhcp_server_id])
+      @shared_network = @dhcp_server.shared_networks.new(shared_network_params)
+    end
 
     respond_to do |format|
       if @shared_network.save

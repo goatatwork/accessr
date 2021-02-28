@@ -1,5 +1,3 @@
 <h1>New Subnet</h1>
 
-<%= render 'form', subnet: @subnet %>
-
-<%= link_to 'Back', subnets_path %>
+<%= render 'form', {shared_network: @shared_network, subnet: @subnet} %>

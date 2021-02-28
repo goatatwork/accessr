@@ -12,6 +12,7 @@ class SubnetsController < ApplicationController
 
   # GET /subnets/new
   def new
+    @shared_network = SharedNetwork.find_by_id(params[:shared_network_id])
     @subnet = Subnet.new
   end
 
@@ -21,7 +22,9 @@ class SubnetsController < ApplicationController
 
   # POST /subnets or /subnets.json
   def create
-    @subnet = Subnet.new(subnet_params)
+    if params[:shared_network_id] && @shared_network = SharedNetwork.find_by_id(params[:shared_network_id])
+      @subnet = @shared_network.subnets.new(subnet_params)
+    end
 
     respond_to do |format|
       if @subnet.save

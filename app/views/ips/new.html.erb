@@ -1,5 +1,3 @@
 <h1>New Ip</h1>
 
-<%= render 'form', ip: @ip %>
-
-<%= link_to 'Back', ips_path %>
+<%= render 'form', {pool: @pool, ip: @ip} %>
