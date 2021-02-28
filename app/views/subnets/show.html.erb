@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subnet.name %>
+</p>
+
+<p>
+  <strong>Network address:</strong>
+  <%= @subnet.network_address %>
+</p>
+
+<p>
+  <strong>Cidr:</strong>
+  <%= @subnet.cidr %>
+</p>
+
+<p>
+  <strong>Shared network:</strong>
+  <%= @subnet.shared_network_id %>
+</p>
+
+<%= link_to 'Edit', edit_subnet_path(@subnet) %> |
+<%= link_to 'Back', subnets_path %>

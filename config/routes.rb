@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :ips
+  resources :pools
+  resources :subnets
+  resources :shared_networks
+  resources :dhcp_servers
   resources :customers do
     resources :locations, only: [:index, :new, :create]
     resource :address, only: [:new, :create]

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shared_network.name %>
+</p>
+
+<p>
+  <strong>Relayed from ip:</strong>
+  <%= @shared_network.relayed_from_ip %>
+</p>
+
+<p>
+  <strong>Dhcp server:</strong>
+  <%= @shared_network.dhcp_server_id %>
+</p>
+
+<%= link_to 'Edit', edit_shared_network_path(@shared_network) %> |
+<%= link_to 'Back', shared_networks_path %>

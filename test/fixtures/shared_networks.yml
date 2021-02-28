@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  relayed_from_ip: MyString
+  dhcp_server: one
+
+two:
+  name: MyString
+  relayed_from_ip: MyString
+  dhcp_server: two

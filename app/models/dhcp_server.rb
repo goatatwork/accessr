@@ -1,0 +1,2 @@
+class DhcpServer < ApplicationRecord
+end

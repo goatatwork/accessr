@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dhcp_server.name %>
+</p>
+
+<p>
+  <strong>Server type:</strong>
+  <%= @dhcp_server.server_type %>
+</p>
+
+<%= link_to 'Edit', edit_dhcp_server_path(@dhcp_server) %> |
+<%= link_to 'Back', dhcp_servers_path %>
