@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  port: one
+  ip: one
+  ont: one
+
+two:
+  location: two
+  port: two
+  ip: two
+  ont: two

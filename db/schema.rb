@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_172124) do
+ActiveRecord::Schema.define(version: 2021_03_01_172648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,19 @@ ActiveRecord::Schema.define(version: 2021_03_01_172124) do
     t.index ["portable_type", "portable_id"], name: "index_ports_on_portable"
   end
 
+  create_table "provisioning_records", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "port_id", null: false
+    t.bigint "ip_id", null: false
+    t.bigint "ont_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ip_id"], name: "index_provisioning_records_on_ip_id"
+    t.index ["location_id"], name: "index_provisioning_records_on_location_id"
+    t.index ["ont_id"], name: "index_provisioning_records_on_ont_id"
+    t.index ["port_id"], name: "index_provisioning_records_on_port_id"
+  end
+
   create_table "shared_networks", force: :cascade do |t|
     t.string "name"
     t.string "relayed_from_ip"
@@ -129,6 +142,10 @@ ActiveRecord::Schema.define(version: 2021_03_01_172124) do
   add_foreign_key "ips", "pools"
   add_foreign_key "locations", "customers"
   add_foreign_key "pools", "subnets"
+  add_foreign_key "provisioning_records", "ips"
+  add_foreign_key "provisioning_records", "locations"
+  add_foreign_key "provisioning_records", "onts"
+  add_foreign_key "provisioning_records", "ports"
   add_foreign_key "shared_networks", "dhcp_servers"
   add_foreign_key "slots", "switches"
   add_foreign_key "subnets", "shared_networks"

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Port</th>
+      <th>Ip</th>
+      <th>Ont</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% provisioning_records.each do |provisioning_record| %>
+      <tr>
+        <td><%= provisioning_record.display_customer %> / <%= provisioning_record.display_location %></td>
+        <td><%= provisioning_record.display_port %></td>
+        <td><%= provisioning_record.display_ip %></td>
+        <td><%= provisioning_record.display_ont %></td>
+        <td><%= link_to 'Show', provisioning_record %></td>
+        <td><%= link_to 'Edit', edit_provisioning_record_path(provisioning_record) %></td>
+        <td><%= link_to 'Destroy', provisioning_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

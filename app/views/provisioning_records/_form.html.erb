@@ -1,0 +1,37 @@
+<%= form_with(model: provisioning_record) do |form| %>
+  <% if provisioning_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(provisioning_record.errors.count, "error") %> prohibited this provisioning_record from being saved:</h2>
+
+      <ul>
+        <% provisioning_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :port_id %>
+    <%= form.text_field :port_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ip_id %>
+    <%= form.text_field :ip_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ont_id %>
+    <%= form.text_field :ont_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
