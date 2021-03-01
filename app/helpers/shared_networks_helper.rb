@@ -1,0 +1,2 @@
+module SharedNetworksHelper
+end

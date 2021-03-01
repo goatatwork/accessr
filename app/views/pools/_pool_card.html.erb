@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">
+      DHCP Pool
+    </h5>
+    <h6 class="card-subtitle mb-4 text-muted text-center">
+      <%= pool.name %>
+    </h6>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        Start <%= pool.start_ip %>
+      </li>
+      <li class="list-group-item">
+        End <%= pool.end_ip %>
+      </li>
+    </ul>
+  </div>
+</div>

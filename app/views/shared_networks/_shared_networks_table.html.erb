@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Relayed from ip</th>
+      <th>Dhcp server</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% shared_networks.each do |shared_network| %>
+      <tr>
+        <td><%= link_to shared_network.name, shared_network %></td>
+        <td><%= shared_network.relayed_from_ip %></td>
+        <td><%= shared_network.dhcp_server_id %></td>
+        <td><%= link_to 'Edit', edit_shared_network_path(shared_network) %></td>
+        <td><%= link_to 'Destroy', shared_network, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

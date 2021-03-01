@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_215952) do
+ActiveRecord::Schema.define(version: 2021_02_28_211912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,37 @@ ActiveRecord::Schema.define(version: 2021_02_24_215952) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "dhcp_servers", force: :cascade do |t|
+    t.string "name"
+    t.string "server_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ips", force: :cascade do |t|
+    t.string "address"
+    t.bigint "pool_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pool_id"], name: "index_ips_on_pool_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.bigint "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_locations_on_customer_id"
+  end
+
+  create_table "pools", force: :cascade do |t|
+    t.string "name"
+    t.string "start_ip"
+    t.string "end_ip"
+    t.bigint "subnet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subnet_id"], name: "index_pools_on_subnet_id"
   end
 
   create_table "ports", force: :cascade do |t|
@@ -55,6 +80,15 @@ ActiveRecord::Schema.define(version: 2021_02_24_215952) do
     t.index ["portable_type", "portable_id"], name: "index_ports_on_portable"
   end
 
+  create_table "shared_networks", force: :cascade do |t|
+    t.string "name"
+    t.string "relayed_from_ip"
+    t.bigint "dhcp_server_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dhcp_server_id"], name: "index_shared_networks_on_dhcp_server_id"
+  end
+
   create_table "slots", force: :cascade do |t|
     t.integer "slot_number"
     t.string "name"
@@ -63,6 +97,16 @@ ActiveRecord::Schema.define(version: 2021_02_24_215952) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["switch_id"], name: "index_slots_on_switch_id"
+  end
+
+  create_table "subnets", force: :cascade do |t|
+    t.string "name"
+    t.string "network_address"
+    t.integer "cidr"
+    t.bigint "shared_network_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shared_network_id"], name: "index_subnets_on_shared_network_id"
   end
 
   create_table "switches", force: :cascade do |t|
@@ -74,6 +118,10 @@ ActiveRecord::Schema.define(version: 2021_02_24_215952) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "ips", "pools"
   add_foreign_key "locations", "customers"
+  add_foreign_key "pools", "subnets"
+  add_foreign_key "shared_networks", "dhcp_servers"
   add_foreign_key "slots", "switches"
+  add_foreign_key "subnets", "shared_networks"
 end

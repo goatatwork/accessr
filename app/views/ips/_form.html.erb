@@ -1,0 +1,27 @@
+<%= form_with(model: [pool, ip]) do |form| %>
+  <% if ip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ip.errors.count, "error") %> prohibited this ip from being saved:</h2>
+
+      <ul>
+        <% ip.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pool_id %>
+    <%= form.text_field :pool_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

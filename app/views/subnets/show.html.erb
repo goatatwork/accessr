@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+    <div class="col-auto">
+      <%= render 'subnet_card', subnet: @subnet %>
+    </div>
+    <div class="col">
+      <span class="h4">Pools</span>
+      <%= link_to 'Add A Pool', new_subnet_pool_path(@subnet), class: 'btn btn-success float-end', type: 'button' %>
+      <%= render '/pools/pools_table', pools: @subnet.pools %>
+    </div>
+</div>

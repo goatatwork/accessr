@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Server type</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% dhcp_servers.each do |dhcp_server| %>
+      <tr>
+        <td><%= link_to dhcp_server.name, dhcp_server %></td>
+        <td><%= dhcp_server.server_type %></td>
+        <td><%= link_to 'Edit', edit_dhcp_server_path(dhcp_server) %></td>
+        <td><%= link_to 'Destroy', dhcp_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

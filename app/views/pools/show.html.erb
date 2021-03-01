@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-auto">
+    <%= render 'pool_card', pool: @pool %>
+  </div>
+  <div class="col">
+    <span class="h4">IPs</span>
+    <%= link_to 'Add An IP', new_pool_ip_path(@pool), class: 'btn btn-success float-end', type: 'button' %>
+    <%= render '/ips/ips_table', ips: @pool.ips %>
+  </div>
+</div>

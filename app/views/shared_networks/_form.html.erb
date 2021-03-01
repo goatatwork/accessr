@@ -1,0 +1,35 @@
+<%= form_with(model: [dhcp_server, shared_network] ) do |form| %>
+  <% if shared_network.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shared_network.errors.count, "error") %> prohibited this shared_network from being saved:</h2>
+
+      <ul>
+        <% shared_network.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+      <div class="col-auto">
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+          <%= form.label :name %>
+        </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :relayed_from_ip, class: 'form-control', placeholder: 'relayed_from_ip' %>
+          <%= form.label :relayed_from_ip %>
+        </div>
+      </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-success'%>
+    <% if shared_network.persisted? %>
+      <%= link_to 'Cancel', shared_network_path(shared_network), class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'Cancel', dhcp_server_path(dhcp_server), class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+<% end %>

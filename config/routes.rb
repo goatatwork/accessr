@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
 
+  resources :dhcp_servers do
+    resources :shared_networks, only: [:index, :new, :create]
+  end
+
+  resources :shared_networks, only: [:show, :edit, :update, :destroy] do
+    resources :subnets, only: [:index, :new, :create]
+  end
+
+  resources :subnets, only: [:show, :edit, :update, :destroy] do
+    resources :pools, only: [:index, :new, :create]
+  end
+
+  resources :pools, only: [:show, :edit, :update, :destroy] do
+      resources :ips, only: [:index, :new, :create]
+  end
+
+  resources :ips, only: [:show, :edit, :update, :destroy]
+
   resources :customers do
     resources :locations, only: [:index, :new, :create]
     resource :address, only: [:new, :create]
