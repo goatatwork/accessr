@@ -1,0 +1,2 @@
+class Ont < ApplicationRecord
+end
