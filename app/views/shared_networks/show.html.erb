@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shared_network.name %>
-</p>
-
-<p>
-  <strong>Relayed from ip:</strong>
-  <%= @shared_network.relayed_from_ip %>
-</p>
-
-<p>
-  <strong>Dhcp server:</strong>
-  <%= @shared_network.dhcp_server_id %>
-</p>
-
-<%= link_to 'Add A Subnet', new_shared_network_subnet_path(@shared_network) %>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'shared_network_card', shared_network: @shared_network %>
+    </div>
+    <div class="col">
+      <div class="row">
+          <div class="col">
+            <span class="h4">Subnets</span>
+            <%= link_to 'Add A Subnet', new_shared_network_subnet_path(@shared_network), class: 'btn btn-success float-end', type: 'button' %>
+          </div>
+      </div>
+      <%= render 'subnets/subnets_table', subnets: @shared_network.subnets %>
+    </div>
+</div>

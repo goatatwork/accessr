@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start ip</th>
+      <th>End ip</th>
+      <th>Subnet</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% pools.each do |pool| %>
+      <tr>
+        <td><%= link_to pool.name, pool %></td>
+        <td><%= pool.start_ip %></td>
+        <td><%= pool.end_ip %></td>
+        <td><%= pool.subnet_id %></td>
+        <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
+        <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

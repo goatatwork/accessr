@@ -1,23 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subnet.name %>
-</p>
-
-<p>
-  <strong>Network address:</strong>
-  <%= @subnet.network_address %>
-</p>
-
-<p>
-  <strong>Cidr:</strong>
-  <%= @subnet.cidr %>
-</p>
-
-<p>
-  <strong>Shared network:</strong>
-  <%= @subnet.shared_network_id %>
-</p>
-
-<%= link_to 'Add A Pool', new_subnet_pool_path(@subnet) %>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'subnet_card', subnet: @subnet %>
+    </div>
+    <div class="col">
+      <span class="h4">Pools</span>
+      <%= link_to 'Add A Pool', new_subnet_pool_path(@subnet), class: 'btn btn-success float-end', type: 'button' %>
+      <%= render '/pools/pools_table', pools: @subnet.pools %>
+    </div>
+</div>

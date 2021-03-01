@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Network address</th>
+      <th>Cidr</th>
+      <th>Shared network</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% subnets.each do |subnet| %>
+      <tr>
+        <td><%= link_to subnet.name, subnet %></td>
+        <td><%= subnet.network_address %></td>
+        <td><%= subnet.cidr %></td>
+        <td><%= subnet.shared_network_id %></td>
+        <td><%= link_to 'Edit', edit_subnet_path(subnet) %></td>
+        <td><%= link_to 'Destroy', subnet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

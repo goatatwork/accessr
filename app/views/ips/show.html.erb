@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @ip.address %>
-</p>
-
-<p>
-  <strong>Pool:</strong>
-  <%= @ip.pool_id %>
-</p>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'ip_card', ip: @ip %>
+    </div>
+    <div class="col">
+    </div>
+</div>

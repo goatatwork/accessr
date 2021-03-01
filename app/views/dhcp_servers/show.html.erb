@@ -1,13 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @dhcp_server.name %>
-</p>
-
-<p>
-  <strong>Server type:</strong>
-  <%= @dhcp_server.server_type %>
-</p>
-
-<%= link_to 'Shared Networks', dhcp_server_shared_networks_path(@dhcp_server) %>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'dhcp_server_card', dhcp_server: @dhcp_server %>
+    </div>
+    <div class="col">
+      <div class="row">
+          <div class="col">
+              <span class="h4">Shared Networks</span>
+              <%= link_to 'Add A Shared Network', new_dhcp_server_shared_network_path(@dhcp_server), class: 'btn btn-success float-end', type: 'button' %>
+          </div>
+      </div>
+      <%= render '/shared_networks/shared_networks_table', shared_networks: @dhcp_server.shared_networks %>
+    </div>
+</div>
