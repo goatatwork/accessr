@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :onts
   resources :dhcp_servers do
     resources :shared_networks, only: [:index, :new, :create]
   end

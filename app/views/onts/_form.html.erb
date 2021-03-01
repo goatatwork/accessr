@@ -1,0 +1,32 @@
+<%= form_with(model: ont) do |form| %>
+  <% if ont.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ont.errors.count, "error") %> prohibited this ont from being saved:</h2>
+
+      <ul>
+        <% ont.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manufacturer %>
+    <%= form.text_field :manufacturer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

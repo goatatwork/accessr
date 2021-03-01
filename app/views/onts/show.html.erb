@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ont.name %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @ont.manufacturer %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @ont.model %>
+</p>
+
+<%= link_to 'Edit', edit_ont_path(@ont) %> |
+<%= link_to 'Back', onts_path %>
