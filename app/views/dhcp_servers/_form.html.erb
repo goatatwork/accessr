@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="row">
+      <div class="col-auto">
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+          <%= form.label :name %>
+        </div>
 
-  <div class="field">
-    <%= form.label :server_type %>
-    <%= form.text_field :server_type %>
+        <div class="form-floating mb-3">
+          <%= form.select :server_type, [['Dnsmasq','dnsmasq'],['ISC-DHCP','isc-dhcp']], {}, class: 'form-select', aria: {label: 'server-type-select'} %>
+          <%= form.label :server_type %>
+        </div>
+      </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-success' %>
   </div>
 <% end %>

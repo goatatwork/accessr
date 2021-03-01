@@ -6,5 +6,11 @@
     <h6 class="card-subtitle mb-4 text-muted text-center">
       <%= dhcp_server.server_type %>
     </h6>
+
+    <div class="row">
+        <div class="col text-center">
+            <%= link_to '[Edit This Server]', edit_dhcp_server_path(dhcp_server), class: 'small fw-light' %>
+        </div>
+    </div>
   </div>
 </div>
