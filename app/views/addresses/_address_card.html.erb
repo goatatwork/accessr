@@ -1,17 +1,16 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title text-center">
-      Address card
+      <%= address.display_address_type %>
     </h5>
-    <h6 class="card-subtitle mb-4 text-muted text-center">
-      some subtitle here
+    <h6 class="card-subtitle mb-4 text-muted text-center small">
+
     </h6>
 
     <div class="row">
         <div class="col-auto">
           <ul class="list-unstyled mb-4">
 
-            <li class="fst-italic">Billing Address</li>
             <li><%= address.address1 %></li>
 
             <% if address.address2.present? %>
@@ -26,8 +25,8 @@
     </div>
 
     <div class="row">
-        <div class="col">
-          <%= link_to "Edit This Address", edit_address_path(address) %>
+        <div class="col text-center">
+          <%= link_to "[Edit This Address]", edit_address_path(address), class: 'small fw-light' %>
         </div>
     </div>
 
