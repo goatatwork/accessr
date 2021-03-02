@@ -145,4 +145,8 @@ ActiveRecord::Schema.define(version: 2021_03_01_172648) do
   add_foreign_key "shared_networks", "dhcp_servers"
   add_foreign_key "slots", "switches"
   add_foreign_key "subnets", "shared_networks"
+  add_foreign_key "provisioning_records", "ips"
+  add_foreign_key "provisioning_records", "locations"
+  add_foreign_key "provisioning_records", "onts"
+  add_foreign_key "provisioning_records", "ports"
 end
