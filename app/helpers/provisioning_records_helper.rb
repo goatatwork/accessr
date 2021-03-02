@@ -1,18 +1,18 @@
 module ProvisioningRecordsHelper
   def display_customer
-    "#{self.location.customer.full_name}"
+    self.location.customer.full_name
   end
 
   def display_ip
-    "#{self.ip.address}"
+    self.ip.address
   end
 
   def display_location
-    "#{self.location.name}"
+    self.location.name
   end
 
   def display_ont
-    "#{self.ont.name}"
+    "#{self.ont.manufacturer} #{self.ont.model}"
   end
 
   def display_port
@@ -25,4 +25,31 @@ module ProvisioningRecordsHelper
     end
   end
 
+  def select_ip_array
+    Ip.all.map do |ip|
+      [ip.address, ip.id]
+    end
+  end
+
+  def select_location_array
+    Location.all.map do |location|
+      ["#{location.customer.full_name} / #{location.name}", location.id]
+    end
+  end
+
+  def select_ont_array
+    Ont.all.map do |ont|
+      ["#{ont.manufacturer} #{ont.model}", ont.id]
+    end
+  end
+
+  def select_port_array
+    Port.all.map do |port|
+      if port.is_switchport?
+        ["Switch: #{port.switch.name} Port: #{port.name}", port.id]
+      elsif port.is_slotport?
+        ["Switch: #{port.slot.switch.name} Slot: #{port.slot.slot_number} Port: #{port.name}", port.id]
+      end
+    end
+  end
 end
