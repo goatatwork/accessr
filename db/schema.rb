@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 2021_03_01_172648) do
   end
 
   create_table "provisioning_records", force: :cascade do |t|
-    t.bigint "location_id", null: false
-    t.bigint "port_id", null: false
-    t.bigint "ip_id", null: false
-    t.bigint "ont_id", null: false
+    t.bigint "location_id", null: true
+    t.bigint "port_id", null: true
+    t.bigint "ip_id", null: true
+    t.bigint "ont_id", null: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ip_id"], name: "index_provisioning_records_on_ip_id"
@@ -142,10 +142,6 @@ ActiveRecord::Schema.define(version: 2021_03_01_172648) do
   add_foreign_key "ips", "pools"
   add_foreign_key "locations", "customers"
   add_foreign_key "pools", "subnets"
-  add_foreign_key "provisioning_records", "ips"
-  add_foreign_key "provisioning_records", "locations"
-  add_foreign_key "provisioning_records", "onts"
-  add_foreign_key "provisioning_records", "ports"
   add_foreign_key "shared_networks", "dhcp_servers"
   add_foreign_key "slots", "switches"
   add_foreign_key "subnets", "shared_networks"
