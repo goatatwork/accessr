@@ -14,22 +14,22 @@
   <div class="row">
       <div class="col-auto">
         <div class="form-floating">
-          <%= form.select :location_id, provisioning_record.select_location_array, {}, class: 'form-select', aria: {label: 'location-select'} %>
+          <%= form.select :location_id, provisioning_record.select_location_array, { include_blank: true }, class: 'form-select', aria: {label: 'location-select'} %>
           <%= form.label :location_id %>
         </div>
 
         <div class="form-floating">
-          <%= form.select :port_id, provisioning_record.select_port_array, {}, class: 'form-select', aria: {label: 'port-select'} %>
+          <%= form.select :port_id, provisioning_record.select_port_array, { include_blank: true }, class: 'form-select', aria: {label: 'port-select'} %>
           <%= form.label :port_id %>
         </div>
 
         <div class="form-floating">
-          <%= form.select :ip_id, provisioning_record.select_ip_array, {}, class: 'form-select', aria: {label: 'ip-select'} %>
+          <%= form.select :ip_id, provisioning_record.select_ip_array, { include_blank: true }, class: 'form-select', aria: {label: 'ip-select'} %>
           <%= form.label :ip_id %>
         </div>
 
         <div class="form-floating">
-          <%= form.select :ont_id, provisioning_record.select_ont_array, {}, class: 'form-select', aria: {label: 'ont-select'} %>
+          <%= form.select :ont_id, provisioning_record.select_ont_array, { include_blank: true }, class: 'form-select', aria: {label: 'ont-select'} %>
           <%= form.label :ont_id %>
         </div>
 
