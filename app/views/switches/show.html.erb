@@ -5,19 +5,40 @@
       <%= render "switch_card", {switch: @switch} %>
     </div>
     <div class="col">
-      <div class="row">
-          <div class="col">
-            <span class="h4">Slots</span>
-            <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
+
+      <div class="row mb-4">
+        <div class="col">
+          <span class="h4">Slots</span>
+          <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
+
+          <% if @switch.slots.any? %>
             <%= render "/slots/slots_table", slots: @switch.slots %>
-          </div>
+          <% else %>
+            <div class="row mb-5">
+                <div class="col text-center">
+                  <span class="fw-light fst-italic text-dark">No Slots Here</span>
+                </div>
+            </div>
+          <% end %>
+        </div>
       </div>
+
       <div class="row">
-          <div class="col">
-            <span class="h4">Onboard Ports</span>
-            <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success float-end", type: "button" %>
+        <div class="col">
+          <span class="h4">Onboard Ports</span>
+          <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success float-end", type: "button" %>
+
+          <% if @switch.ports.any? %>
             <%= render "/ports/ports_table", ports: @switch.ports %>
-          </div>
+          <% else %>
+            <div class="row mb-5">
+                <div class="col text-center">
+                  <span class="fw-light fst-italic text-dark">No Onboard Ports Here</span>
+                </div>
+            </div>
+          <% end %>
+        </div>
       </div>
+
     </div>
 </div>

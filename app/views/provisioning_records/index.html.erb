@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Provisioning Records</h1>
-
-<%= render 'provisioning_records_table', provisioning_records: @provisioning_records %>
-
-<br>
-
-<%= link_to 'New Provisioning Record', new_provisioning_record_path %>
+<div class="row">
+    <div class="col">
+      <span class="h4">Provisioning Records</span>
+      <%= link_to 'Provision Service', new_provisioning_record_path, class: 'btn btn-success float-end', type: 'button' %>
+      <%= render 'provisioning_records_table', provisioning_records: @provisioning_records %>
+    </div>
+</div>

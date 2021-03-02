@@ -11,22 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="row">
+      <div class="col-auto">
+        <div class="form-floating mb-3">
+          <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+          <%= form.label :name %>
+        </div>
 
-  <div class="field">
-    <%= form.label :manufacturer %>
-    <%= form.text_field :manufacturer %>
-  </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :manufacturer, class: 'form-control', placeholder: 'manufacturer' %>
+          <%= form.label :manufacturer %>
+        </div>
 
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model %>
+        <div class="form-floating mb-3">
+          <%= form.text_field :model, class: 'form-control', placeholder: 'model' %>
+          <%= form.label :model %>
+        </div>
+
+      </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-success' %>
+    <%= link_to 'Cancel', onts_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

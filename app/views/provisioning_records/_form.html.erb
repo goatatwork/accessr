@@ -11,27 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id %>
+  <div class="row">
+      <div class="col-auto">
+        <div class="form-floating">
+          <%= form.select :location_id, provisioning_record.select_location_array, { include_blank: true }, class: 'form-select', aria: {label: 'location-select'} %>
+          <%= form.label :location_id %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.select :port_id, provisioning_record.select_port_array, { include_blank: true }, class: 'form-select', aria: {label: 'port-select'} %>
+          <%= form.label :port_id %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.select :ip_id, provisioning_record.select_ip_array, { include_blank: true }, class: 'form-select', aria: {label: 'ip-select'} %>
+          <%= form.label :ip_id %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.select :ont_id, provisioning_record.select_ont_array, { include_blank: true }, class: 'form-select', aria: {label: 'ont-select'} %>
+          <%= form.label :ont_id %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-success' %>
+        </div>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :port_id %>
-    <%= form.text_field :port_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ip_id %>
-    <%= form.text_field :ip_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ont_id %>
-    <%= form.text_field :ont_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
