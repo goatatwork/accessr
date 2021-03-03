@@ -11,27 +11,62 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :port_number %>
-    <%= form.number_field :port_number %>
-  </div>
+  <div class="row">
+      <div class="col-auto">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.number_field :port_number, class: 'form-control', placeholder: 'port_number' %>
+              <%= form.label :port_number %>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+              <%= form.label :name %>
+            </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.number_field :down_rate, class: 'form-control', placeholder: 'down_rate' %>
+              <%= form.label :down_rate %>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.number_field :up_rate, class: 'form-control', placeholder: 'up_rate' %>
+              <%= form.label :up_rate %>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.select :rate_unit, ['kb','bits','mb'], {disabled: ['bits','mb']}, class: 'form-select', aria: {label: 'server-type-select'} %>
+              <%= form.label :rate_unit %>
+            </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :portable_id %>
-    <%= form.text_field :portable_id %>
-  </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.text_area :description, class: 'form-control', placeholder: 'description' %>
+              <%= form.label :description %>
+            </div>
+          </div>
+        </div>
 
-  <div class="actions">
-    <%= form.submit %>
+        <div class="row">
+          <div class="col">
+            <div class="actions">
+              <%= form.submit class: 'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+
+      </div>
   </div>
 <% end %>

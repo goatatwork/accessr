@@ -12,7 +12,7 @@
           <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
 
           <% if @switch.slots.any? %>
-            <%= render "/slots/slots_table", slots: @switch.slots %>
+            <%= render "/slots/slots_table", slots: @switch.slots.order(:slot_number) %>
           <% else %>
             <div class="row mb-5">
                 <div class="col text-center">
@@ -29,7 +29,7 @@
           <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success float-end", type: "button" %>
 
           <% if @switch.ports.any? %>
-            <%= render "/ports/ports_table", ports: @switch.ports %>
+            <%= render "/ports/ports_table", ports: @switch.ports.order(:port_number) %>
           <% else %>
             <div class="row mb-5">
                 <div class="col text-center">
