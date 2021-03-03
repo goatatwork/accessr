@@ -55,7 +55,7 @@ Ont.create(name: 'FTTx switch', manufacturer: 'Zhone', model: 'ZNID2728A1')
 @switch3 = Switch.create(name: 'Remote B Switch', manufacturer: 'Arista', model: '7800R3', management_ip: '172.16.12.1')
 
 (1..24).map do |number|
-  @switch1.ports.create(port_number: number, name: "1/1/#{number}", description: "description of port 1/1/#{number}")
+  @switch1.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
 end
 
 (1..12).map do |number|
@@ -64,12 +64,12 @@ end
 
 @switch2.slots.map do |slot|
   (1..24).map do |number|
-    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", description: "description of port 1/#{slot.slot_number}/#{number}")
+    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
   end
 end
 
 (1..8).map do |number|
-  @switch3.ports.create(port_number: number, name: "1/1/#{number}", description: "description of port 1/1/#{number}")
+  @switch3.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
 end
 
 (1..4).map do |number|
@@ -78,7 +78,7 @@ end
 
 @switch3.slots.map do |slot|
   (1..12).map do |number|
-    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", description: "description of port 1/#{slot.slot_number}/#{number}")
+    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
   end
 end
 

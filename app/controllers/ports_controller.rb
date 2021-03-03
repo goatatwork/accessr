@@ -5,11 +5,11 @@ class PortsController < ApplicationController
   # GET /ports or /ports.json
   def index
     if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
-      @ports = @switch.ports
+      @ports = @switch.ports.order(:port_number)
     elsif params[:slot_id] && @slot = Slot.find_by_id(params[:slot_id])
-      @ports = @slot.ports
+      @ports = @slot.ports.order(:port_number)
     else
-      @ports = Port.all
+      @ports = Port.order(:port_number)
     end
   end
 
@@ -86,6 +86,6 @@ class PortsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def port_params
-      params.require(:port).permit(:port_number, :name, :description)
+      params.require(:port).permit(:port_number, :name, :description, :up_rate, :down_rate, :rate_unit)
     end
 end
