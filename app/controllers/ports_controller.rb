@@ -49,8 +49,10 @@ class PortsController < ApplicationController
 
   # PATCH/PUT /ports/1 or /ports/1.json
   def update
+
     respond_to do |format|
       if @port.update(port_params)
+        SetPortRateLimitJob.perform_later(@port)
         format.html { redirect_to @port, notice: "Port was successfully updated." }
         format.json { render :show, status: :ok, location: @port }
       else
