@@ -64,6 +64,6 @@ class SwitchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def switch_params
-      params.require(:switch).permit(:name, :manufacturer, :model, :management_ip)
+      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password)
     end
 end
