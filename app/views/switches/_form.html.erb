@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :hostname %>
+    <%= form.text_field :hostname %>
+  </div>
+
+  <div class="field">
     <%= form.label :manufacturer %>
     <%= form.text_field :manufacturer %>
   </div>
@@ -29,6 +34,16 @@
   <div class="field">
     <%= form.label :management_ip %>
     <%= form.text_field :management_ip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ssh_user %>
+    <%= form.text_field :ssh_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ssh_password %>
+    <%= form.text_field :ssh_password %>
   </div>
 
   <div class="actions">
