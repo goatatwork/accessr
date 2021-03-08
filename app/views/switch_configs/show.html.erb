@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @switch_config.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @switch_config.active %>
+</p>
+
+<p>
+  <strong>Switch:</strong>
+  <%= @switch_config.switch_id %>
+</p>
+
+<%= link_to 'Edit', edit_switch_config_path(@switch_config) %> |
+<%= link_to 'Back', switch_configs_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :switch_configs
   resources :provisioning_records
   resources :onts
   resources :dhcp_servers do

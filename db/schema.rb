@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_121327) do
+ActiveRecord::Schema.define(version: 2021_03_08_131509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,15 @@ ActiveRecord::Schema.define(version: 2021_03_08_121327) do
     t.index ["shared_network_id"], name: "index_subnets_on_shared_network_id"
   end
 
+  create_table "switch_configs", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active"
+    t.bigint "switch_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["switch_id"], name: "index_switch_configs_on_switch_id"
+  end
+
   create_table "switches", force: :cascade do |t|
     t.string "name"
     t.string "manufacturer"
@@ -185,4 +194,5 @@ ActiveRecord::Schema.define(version: 2021_03_08_121327) do
   add_foreign_key "shared_networks", "dhcp_servers"
   add_foreign_key "slots", "switches"
   add_foreign_key "subnets", "shared_networks"
+  add_foreign_key "switch_configs", "switches"
 end
