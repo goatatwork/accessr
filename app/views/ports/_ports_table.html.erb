@@ -1,8 +1,7 @@
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Port</th>
-      <th>Name</th>
       <th>Down/Up Rates</th>
       <th>Belongs To</th>
       <th colspan="2"></th>
@@ -12,8 +11,7 @@
   <tbody>
     <% ports.each do |port| %>
       <tr>
-        <td><%= link_to port.port_number, port %></td>
-        <td><%= port.name %></td>
+        <td><%= link_to port.name, port %></td>
         <td><%= "#{port.down_rate}#{port.rate_unit} / #{port.up_rate}#{port.rate_unit}" %></td>
         <td><%= link_to port.portable.name, port.portable %>
         <td><%= link_to 'Edit', edit_port_path(port) %></td>
