@@ -1,5 +1,9 @@
 <h1>New Switch Config</h1>
 
-<%= render 'form', switch_config: @switch_config %>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'form', switch_config: @switch_config %>
+    </div>
+</div>
 
-<%= link_to 'Back', switch_configs_path %>
+<%= link_to 'Back', switch_path(@switch) %>

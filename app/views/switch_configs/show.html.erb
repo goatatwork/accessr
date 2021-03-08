@@ -6,14 +6,20 @@
 </p>
 
 <p>
-  <strong>Active:</strong>
-  <%= @switch_config.active %>
+  <strong>Switch:</strong>
+  <%= link_to @switch_config.switch.name, @switch_config.switch %>
 </p>
+
+<hr>
 
 <p>
-  <strong>Switch:</strong>
-  <%= @switch_config.switch_id %>
+  <% if @switch_config.file.attached? %>
+    Download <%= link_to @switch_config.file.filename, url_for(@switch_config.file) %><br>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_switch_config_path(@switch_config) %> |
-<%= link_to 'Back', switch_configs_path %>
+<p class="small">
+  <% @switch_config.contents_of_file_on_disk.each do |line| %>
+    <%= line %><br>
+  <% end %>
+</p>

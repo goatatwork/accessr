@@ -6,17 +6,15 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Active</th>
       <th>Switch</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @switch_configs.each do |switch_config| %>
+    <% @switch.switch_configs.each do |switch_config| %>
       <tr>
         <td><%= switch_config.name %></td>
-        <td><%= switch_config.active %></td>
         <td><%= switch_config.switch_id %></td>
         <td><%= link_to 'Show', switch_config %></td>
         <td><%= link_to 'Edit', edit_switch_config_path(switch_config) %></td>
@@ -28,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Switch Config', new_switch_config_path %>
+<%= link_to 'New Switch Config', new_switch_switch_config_path(@switch) %>

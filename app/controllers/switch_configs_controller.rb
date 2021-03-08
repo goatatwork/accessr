@@ -15,6 +15,7 @@ class SwitchConfigsController < ApplicationController
 
   # GET /switch_configs/new
   def new
+    @switch = Switch.find_by_id(params[:switch_id])
     @switch_config = SwitchConfig.new
   end
 
@@ -24,12 +25,15 @@ class SwitchConfigsController < ApplicationController
 
   # POST /switch_configs or /switch_configs.json
   def create
-    @switch_config = SwitchConfig.new(switch_config_params)
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @switch_config = @switch.switch_configs.new(switch_config_params)
+    end
 
     respond_to do |format|
       if @switch_config.save
-        format.html { redirect_to @switch_config, notice: "Switch config was successfully created." }
-        format.json { render :show, status: :created, location: @switch_config }
+        BackupSwitchConfigJob.perform_later(@switch, @switch_config)
+        format.html { redirect_to @switch, notice: "Switch config was successfully created." }
+        format.json { render :show, status: :created, location: @switch }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @switch_config.errors, status: :unprocessable_entity }

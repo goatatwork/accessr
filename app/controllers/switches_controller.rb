@@ -3,6 +3,7 @@ class SwitchesController < ApplicationController
 
   # GET /switches or /switches.json
   def index
+    @switch_config = SwitchConfig.new
     @switches = Switch.all
   end
 
