@@ -3,6 +3,9 @@ class SwitchConfigsController < ApplicationController
 
   # GET /switch_configs or /switch_configs.json
   def index
+    if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
+      @switch_configs = @switch.switch_configs
+    end
     @switch_configs = SwitchConfig.all
   end
 
