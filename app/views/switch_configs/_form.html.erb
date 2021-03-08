@@ -1,0 +1,22 @@
+<%= form_with(model: [@switch, switch_config]) do |form| %>
+  <% if switch_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(switch_config.errors.count, "error") %> prohibited this switch_config from being saved:</h2>
+
+      <ul>
+        <% switch_config.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+    <%= form.label :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

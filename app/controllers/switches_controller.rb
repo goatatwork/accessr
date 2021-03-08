@@ -3,6 +3,7 @@ class SwitchesController < ApplicationController
 
   # GET /switches or /switches.json
   def index
+    @switch_config = SwitchConfig.new
     @switches = Switch.all
   end
 
@@ -64,6 +65,6 @@ class SwitchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def switch_params
-      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password)
+      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password, config_backups: [])
     end
 end

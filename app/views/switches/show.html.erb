@@ -3,7 +3,25 @@
 <div class="row">
     <div class="col-auto">
       <%= render "switch_card", {switch: @switch} %>
+
+      <div class="row">
+          <div class="col text-center">
+            <ul class="list-group list-group-flush">
+              <% @switch.switch_configs.each do |switch_config| %>
+                <li class="list-group-item">
+                  <% if switch_config.file.attached? %>
+                    <%= link_to switch_config.created_at, switch_config %>
+                  <% end %>
+                </li>
+              <% end %>
+                <li class="list-group-item">
+                  <%= link_to 'New Config', new_switch_switch_config_path(@switch) %>
+                </li>
+            </ul>
+          </div>
+      </div>
     </div>
+
     <div class="col">
 
       <div class="row mb-4">

@@ -75,4 +75,12 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << "proto.goat"
+
+  # Goat: To fix errors when removing an object with active storage files
+  # attached see https://github.com/rails/rails/issues/30937
+  config.active_job.queue_adapter = :inline
+
+  # Goat: To resolve issue described here:
+  # https://github.com/rails/rails/issues/35817
+  config.active_storage.replace_on_assign_to_many = false
 end

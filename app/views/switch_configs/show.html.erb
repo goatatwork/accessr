@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @switch_config.name %>
+</p>
+
+<p>
+  <strong>Switch:</strong>
+  <%= link_to @switch_config.switch.name, @switch_config.switch %>
+</p>
+
+<hr>
+
+<p>
+  <% if @switch_config.file.attached? %>
+    Download <%= link_to @switch_config.file.filename, url_for(@switch_config.file) %><br>
+  <% end %>
+</p>
+
+<p class="small">
+  <% @switch_config.contents_of_file_on_disk.each do |line| %>
+    <%= line %><br>
+  <% end %>
+</p>

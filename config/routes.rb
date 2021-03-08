@@ -37,7 +37,10 @@ Rails.application.routes.draw do
   resources :switches do
     resources :slots, only: [:index, :new, :create]
     resources :ports, only: [:index, :new, :create]
+    resources :switch_configs, only: [:index, :new, :create]
   end
+
+  resources :switch_configs, only: [:index, :show, :edit, :update, :destroy]
 
   resources :slots, only: [:show, :edit, :update, :destroy] do
     resources :ports, only: [:index, :new, :create]
