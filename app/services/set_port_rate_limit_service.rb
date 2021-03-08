@@ -25,10 +25,10 @@ class SetPortRateLimitService < ApplicationService
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
     s.cmd({ "String" => "#{@switch.ssh_password}", "Match" => %r{#{@switch.hostname}#} })
     s.cmd({ "String" => "config t", "Match" => %r{\(config\)#$} })
-    s.cmd({ "String" => "interface ethernet #{@port.name}", "Match" => %r{#{@port.name}\)#$} })
+    s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} }) # delete_prefix makes 1/1/1 out of config-if-e1000-1/1/1
     # not having to escape "/" here is a feture of ruby's r%{}
-    in_output = s.cmd({ "String" => "rate-limit input fixed #{@port.up_rate}", "Match" => %r{#{@port.name}\)#$} })
-    out_output = s.cmd({ "String" => "rate-limit output shaping #{@port.down_rate}", "Match" => %r{#{@port.name}\)#$} })
+    in_output = s.cmd({ "String" => "rate-limit input fixed #{@port.up_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+    out_output = s.cmd({ "String" => "rate-limit output shaping #{@port.down_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
     s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
     s.cmd({ "String" => "exit", "Match" => %r{#{@switch.hostname}#} })
     write_mem_output = s.cmd({ "String" => "write mem", "Match" => %r{#{@switch.hostname}#} })
