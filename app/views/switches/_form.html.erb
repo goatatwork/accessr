@@ -46,6 +46,11 @@
     <%= form.text_field :ssh_password %>
   </div>
 
+  <div class="field">
+    <%= form.label :look_for_ports_via_snmp %>
+    <%= check_box_tag :look_for_ports_via_snmp %>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-success' %>
     <% if switch.persisted? %>
