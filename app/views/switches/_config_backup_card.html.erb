@@ -1,0 +1,28 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <h6 class="card-subtitle text-center">
+      Backups
+    </h6>
+
+    <div class="row">
+        <div class="col-auto">
+          <ul class="list-group list-group-flush">
+            <% @switch.switch_configs.each do |switch_config| %>
+              <li class="list-group-item">
+                <% if switch_config.file.attached? %>
+                  <%= link_to switch_config.created_at, switch_config %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+          <%= link_to 'New running-config Backup', new_switch_switch_config_path(@switch), class: 'small fw-light' %>
+        </div>
+    </div>
+
+  </div>
+</div>

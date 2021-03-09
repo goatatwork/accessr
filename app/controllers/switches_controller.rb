@@ -26,6 +26,11 @@ class SwitchesController < ApplicationController
 
     respond_to do |format|
       if @switch.save
+
+        if params[:look_for_ports_via_snmp]
+          @switch.add_ports_from_snmp
+        end
+
         format.html { redirect_to @switch, notice: "Switch was successfully created." }
         format.json { render :show, status: :created, location: @switch }
       else
@@ -65,6 +70,6 @@ class SwitchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def switch_params
-      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password, config_backups: [])
+      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password, :look_for_ports_via_snmp, config_backups: [])
     end
 end

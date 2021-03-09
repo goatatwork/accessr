@@ -50,37 +50,37 @@ Ont.create(name: 'FTTx switch', manufacturer: 'Zhone', model: 'ZNID2426A')
 Ont.create(name: 'FTTx switch', manufacturer: 'Zhone', model: 'ZNID2728A1')
 
 # Switches, Slots, and Ports
-@switch1 = Switch.create(name: 'CO Brocade', manufacturer: 'Brocade', model: 'ICX6610', management_ip: '192.168.99.1')
-@switch2 = Switch.create(name: 'CO Fiber Switch', manufacturer: 'Arista', model: 'DCS-7050T-64-R', management_ip: '192.168.127.254')
-@switch3 = Switch.create(name: 'Remote B Switch', manufacturer: 'Arista', model: '7800R3', management_ip: '172.16.12.1')
+# @switch1 = Switch.create(name: 'CO Brocade', manufacturer: 'Brocade', model: 'ICX6610', management_ip: '192.168.99.1')
+# @switch2 = Switch.create(name: 'CO Fiber Switch', manufacturer: 'Arista', model: 'DCS-7050T-64-R', management_ip: '192.168.127.254')
+# @switch3 = Switch.create(name: 'Remote B Switch', manufacturer: 'Arista', model: '7800R3', management_ip: '172.16.12.1')
 
-(1..24).map do |number|
-  @switch1.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
-end
+# (1..24).map do |number|
+#   @switch1.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
+# end
 
-(1..12).map do |number|
-  @switch2.slots.create(slot_number: number, name: "Slot #{number}", description: "Description of slot #{number}")
-end
+# (1..12).map do |number|
+#   @switch2.slots.create(slot_number: number, name: "Slot #{number}", description: "Description of slot #{number}")
+# end
 
-@switch2.slots.map do |slot|
-  (1..24).map do |number|
-    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
-  end
-end
+# @switch2.slots.map do |slot|
+#   (1..24).map do |number|
+#     slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
+#   end
+# end
 
-(1..8).map do |number|
-  @switch3.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
-end
+# (1..8).map do |number|
+#   @switch3.ports.create(port_number: number, name: "1/1/#{number}", up_rate: 5000, down_rate: 25000, rate_unit: 'kb', description: "description of port 1/1/#{number}")
+# end
 
-(1..4).map do |number|
-  @switch3.slots.create(slot_number: number, name: "Slot #{number}", description: "Description of slot #{number}")
-end
+# (1..4).map do |number|
+#   @switch3.slots.create(slot_number: number, name: "Slot #{number}", description: "Description of slot #{number}")
+# end
 
-@switch3.slots.map do |slot|
-  (1..12).map do |number|
-    slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
-  end
-end
+# @switch3.slots.map do |slot|
+#   (1..12).map do |number|
+#     slot.ports.create(port_number: number, name: "1/#{slot.slot_number}/#{number}", up_rate: 3000, down_rate: 12000, rate_unit: 'kb', description: "description of port 1/#{slot.slot_number}/#{number}")
+#   end
+# end
 
 # Dhcp Servers, Shared Networks, Subnets, Pools, and IPs
 @server = DhcpServer.create(name: 'Default Server', server_type: 'dnsmasq')

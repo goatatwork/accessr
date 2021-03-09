@@ -12,11 +12,13 @@
   <% end %>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'name', aria: { describedby: 'nameInputHelp'} %>
     <%= form.label :name %>
+    <div id="nameInputHelp" class="form-text">This is just a nickname for the backup.</div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-success' %>
+    <%= link_to 'Cancel', switch_path(@switch), class: 'btn btn-danger' %>
   </div>
 <% end %>
