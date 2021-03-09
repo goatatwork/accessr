@@ -11,42 +11,67 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
+        <%= form.label :name %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :hostname, class: 'form-control', placeholder: 'hostname' %>
+        <%= form.label :hostname %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :hostname %>
-    <%= form.text_field :hostname %>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :manufacturer, class: 'form-control', placeholder: 'manufacturer' %>
+        <%= form.label :manufacturer %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :model, class: 'form-control', placeholder: 'model' %>
+        <%= form.label :model %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :manufacturer %>
-    <%= form.text_field :manufacturer %>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :management_ip, class: 'form-control', placeholder: 'management_ip' %>
+        <%= form.label :management_ip %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :ssh_user, class: 'form-control', placeholder: 'ssh_user' %>
+        <%= form.label :ssh_user %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model %>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :ssh_password, class: 'form-control', placeholder: 'ssh_password' %>
+        <%= form.label :ssh_password %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-check mt-3 ms-2">
+        <%= check_box_tag :look_for_ports_via_snmp, 1, false, class: 'form-check-input' %>
+        <%= form.label :look_for_ports_via_snmp, 'Use SNMP to find ports', class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :management_ip %>
-    <%= form.text_field :management_ip %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ssh_user %>
-    <%= form.text_field :ssh_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ssh_password %>
-    <%= form.text_field :ssh_password %>
-  </div>
-
-  <div class="actions">
+  <div class="fom-group mt-4">
     <%= form.submit class: 'btn btn-success' %>
     <% if switch.persisted? %>
       <%= link_to 'Cancel', @switch, class: 'btn btn-danger', type: 'button' %>

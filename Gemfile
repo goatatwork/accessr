@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker'
 gem 'net-ssh'
 gem 'net-ssh-telnet'
+gem 'snmp', '~> 1.3', '>= 1.3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

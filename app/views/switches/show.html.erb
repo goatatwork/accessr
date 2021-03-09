@@ -4,42 +4,10 @@
     <div class="col-auto">
       <%= render "switch_card", {switch: @switch} %>
 
-      <div class="row">
-          <div class="col text-center">
-            <ul class="list-group list-group-flush">
-              <% @switch.switch_configs.each do |switch_config| %>
-                <li class="list-group-item">
-                  <% if switch_config.file.attached? %>
-                    <%= link_to switch_config.created_at, switch_config %>
-                  <% end %>
-                </li>
-              <% end %>
-                <li class="list-group-item">
-                  <%= link_to 'New Config', new_switch_switch_config_path(@switch) %>
-                </li>
-            </ul>
-          </div>
-      </div>
+      <%= render 'config_backup_card' %>
     </div>
 
     <div class="col">
-
-      <div class="row mb-4">
-        <div class="col">
-          <span class="h4">Slots</span>
-          <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
-
-          <% if @switch.slots.any? %>
-            <%= render "/slots/slots_table", slots: @switch.slots.order(:slot_number) %>
-          <% else %>
-            <div class="row mb-5">
-                <div class="col text-center">
-                  <span class="fw-light fst-italic text-dark">No Slots Here</span>
-                </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
 
       <div class="row">
         <div class="col">
@@ -52,6 +20,23 @@
             <div class="row mb-5">
                 <div class="col text-center">
                   <span class="fw-light fst-italic text-dark">No Onboard Ports Here</span>
+                </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <span class="h4">Slots</span>
+          <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
+
+          <% if @switch.slots.any? %>
+            <%= render "/slots/slots_table", slots: @switch.slots.order(:slot_number) %>
+          <% else %>
+            <div class="row mb-5">
+                <div class="col text-center">
+                  <span class="fw-light fst-italic text-dark">No Slots Here</span>
                 </div>
             </div>
           <% end %>
