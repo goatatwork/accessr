@@ -15,7 +15,7 @@
           <%= link_to 'Add A Port', new_switch_port_path(@switch), class: "btn btn-success float-end", type: "button" %>
 
           <% if @switch.ports.any? %>
-            <%= render "/ports/ports_table", ports: @switch.ports.order(:port_number) %>
+            <%= render "/ports/ports_table", ports: @switch.ports.order(:id) %>
           <% else %>
             <div class="row mb-5">
                 <div class="col text-center">

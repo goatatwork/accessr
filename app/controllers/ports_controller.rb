@@ -5,11 +5,11 @@ class PortsController < ApplicationController
   # GET /ports or /ports.json
   def index
     if params[:switch_id] && @switch = Switch.find_by_id(params[:switch_id])
-      @ports = @switch.ports.order(:port_number)
+      @ports = @switch.ports.order(:id)
     elsif params[:slot_id] && @slot = Slot.find_by_id(params[:slot_id])
-      @ports = @slot.ports.order(:port_number)
+      @ports = @slot.ports.order(:id)
     else
-      @ports = Port.order(:port_number)
+      @ports = Port.order(:id)
     end
   end
 
