@@ -26,22 +26,24 @@
         </div>
       </div>
 
-      <div class="row mb-4">
-        <div class="col">
-          <span class="h4">Slots</span>
-          <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
+      <% if @switch.slots.any? %>
+        <div class="row mb-4">
+          <div class="col">
+            <span class="h4">Slots</span>
+            <%= link_to 'Add A Slot', new_switch_slot_path(@switch), class: "btn btn-success float-end", type: "button" %>
 
-          <% if @switch.slots.any? %>
-            <%= render "/slots/slots_table", slots: @switch.slots.order(:slot_number) %>
-          <% else %>
-            <div class="row mb-5">
-                <div class="col text-center">
-                  <span class="fw-light fst-italic text-dark">No Slots Here</span>
-                </div>
-            </div>
-          <% end %>
+            <% if @switch.slots.any? %>
+              <%= render "/slots/slots_table", slots: @switch.slots.order(:slot_number) %>
+            <% else %>
+              <div class="row mb-5">
+                  <div class="col text-center">
+                    <span class="fw-light fst-italic text-dark">No Slots Here</span>
+                  </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end  %>
 
     </div>
 </div>

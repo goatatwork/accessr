@@ -10,7 +10,7 @@ module SwitchesHelper
   def get_interfaces_from_snmp
     ifTable_columns = ["ifName"]
     interfaces = []
-    SNMP::Manager.open(:host => '192.168.99.1') do |manager|
+    SNMP::Manager.open(:host => self.management_ip) do |manager|
       manager.walk(ifTable_columns) do |row|
         row.each do |vb|
           interfaces.append(vb.value) if vb.value.starts_with?('ethernet')
