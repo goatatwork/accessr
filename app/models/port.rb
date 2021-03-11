@@ -6,7 +6,6 @@ class Port < ApplicationRecord
   has_many :locations, through: :provisioning_records
   has_many :onts, through: :provisioning_records
 
-
   def is_slotport?
     self.portable_type == 'Slot'
   end
