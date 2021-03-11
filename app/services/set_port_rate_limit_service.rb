@@ -36,5 +36,6 @@ class SetPortRateLimitService < ApplicationService
     s.cmd("exit")
 
     GoatLogger.call("\n\#\#\#\n#{in_output}\n#{out_output}\n\#\#\#")
+    @port.update_attribute(:switch_informed, DateTime.now)
   end
 end

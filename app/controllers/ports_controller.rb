@@ -53,7 +53,7 @@ class PortsController < ApplicationController
     respond_to do |format|
       if @port.update(port_params)
         SetPortRateLimitJob.perform_later(@port)
-        format.html { redirect_to @port, notice: "Port was successfully updated." }
+        format.html { redirect_to @port.portable, notice: "Port was successfully updated." }
         format.json { render :show, status: :ok, location: @port }
       else
         format.html { render :edit, status: :unprocessable_entity }
