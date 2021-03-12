@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-floating">
         <%= form.text_field :name, class: 'form-control', placeholder: 'name' %>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-floating">
         <%= form.text_field :manufacturer, class: 'form-control', placeholder: 'manufacturer' %>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-floating">
         <%= form.text_field :ssh_user, class: 'form-control', placeholder: 'ssh_user' %>
@@ -57,7 +57,7 @@
   </div>
 
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-floating">
         <%= form.text_field :management_ip, class: 'form-control', placeholder: 'management_ip' %>
@@ -65,14 +65,16 @@
       </div>
     </div>
     <div class="col">
-      <div class="form-check mt-3 ms-2">
-        <%= check_box_tag :look_for_ports_via_snmp, 1, false, class: 'form-check-input' %>
-        <%= form.label :look_for_ports_via_snmp, 'Use SNMP to find ports', class: 'form-check-label' %>
-      </div>
+      <% if !switch.persisted? %>
+        <div class="form-check mt-3 ms-2">
+          <%= check_box_tag :look_for_ports_via_snmp, 1, false, class: 'form-check-input' %>
+          <%= form.label :look_for_ports_via_snmp, 'Use SNMP to find ports', class: 'form-check-label' %>
+        </div>
+      <% end %>
     </div>
   </div>
 
-  <div class="fom-group mt-4">
+  <div class="fom-group mt-2">
     <%= form.submit class: 'btn btn-success' %>
     <% if switch.persisted? %>
       <%= link_to 'Cancel', @switch, class: 'btn btn-danger', type: 'button' %>
