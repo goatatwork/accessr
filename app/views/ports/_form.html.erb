@@ -63,7 +63,12 @@
           <div class="col">
             <div class="actions">
               <%= form.submit class: 'btn btn-success' %>
-              <%= link_to 'Cancel', switch_path(port.switch), class: 'btn btn-danger' %>
+              <% if port.persisted? %>
+                <%= link_to 'Cancel', switch_path(port.parent_switch), class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'Cancel', switch_path(@portable), class: 'btn btn-danger' %>
+              <% end %>
+
             </div>
           </div>
         </div>
