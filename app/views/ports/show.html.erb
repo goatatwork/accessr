@@ -1,30 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Port number:</strong>
-  <%= @port.port_number %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @port.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @port.description %>
-</p>
-
-<p>
-  <strong>Portable:</strong>
-  <%= @port.portable_id %>
-</p>
-
-<%= link_to 'Edit', edit_port_path(@port) %> |
-<% if @port.portable_type == 'Switch' %>
-  <%= link_to 'Back To Switch', switch_ports_path(@port.switch) %>
-<% end %>
-
-<% if @port.portable_type == 'Slot' %>
-  <%= link_to 'Back To Port', slot_ports_path(@port.slot) %>
-<% end %>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'port_card', port: @port %>
+    </div>
+    <div class="col">
+      port info
+    </div>
+</div>
