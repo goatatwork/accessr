@@ -5,14 +5,14 @@
       <th>Down/Up Rates</th>
       <th class="text-center">Set On Switch</th>
       <th>Belongs To</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% ports.each do |port| %>
       <tr>
-        <td><%= link_to port.name, edit_port_path(port) %></td>
+        <td><%= link_to port.name, port_path(port) %></td>
         <td><%= "#{port.down_rate}#{port.rate_unit} / #{port.up_rate}#{port.rate_unit}" %></td>
         <td class="text-center">
           <% if port.switch_informed %>
@@ -22,6 +22,7 @@
           <% end %>
         </td>
         <td><%= link_to port.portable.name, port.portable %></td>
+        <td><%= link_to 'Edit', edit_port_path(port) %></td>
         <td><%= link_to 'Destroy', port, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
