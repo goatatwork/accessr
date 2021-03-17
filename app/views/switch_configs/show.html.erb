@@ -1,25 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @switch_config.name %>
-</p>
+<div class="row">
+    <div class="col-auto">
+      <%= render 'switch_config_card', switch_config: @switch_config %>
+    </div>
+    <div class="col">
 
-<p>
-  <strong>Switch:</strong>
-  <%= link_to @switch_config.switch.name, @switch_config.switch %>
-</p>
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <li class="list-group-item fw-bold"><%= @switch_config.config_blocks.count %> blocks</li>
+            <% @switch_config.config_blocks.each do |block| %>
+              <% unless block.empty? %>
+                <li class="list-group-item">
+  <%= raw block %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
 
-<hr>
+      <hr>
 
-<p>
-  <% if @switch_config.file.attached? %>
-    Download <%= link_to @switch_config.file.filename, url_for(@switch_config.file) %><br>
-  <% end %>
-</p>
+      <p>
+        <% if @switch_config.file.attached? %>
+          Download <%= link_to @switch_config.file.filename, url_for(@switch_config.file) %><br>
+        <% end %>
+      </p>
 
-<p class="small">
-  <% @switch_config.contents_of_file_on_disk.each do |line| %>
-    <%= line %><br>
-  <% end %>
-</p>
+      <p class="small">
+
+      </p>
+
+    </div>
+</div>

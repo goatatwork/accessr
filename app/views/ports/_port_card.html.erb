@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">
+      <%= port.name %>
+    </h5>
+    <h6 class="card-subtitle mb-4 text-muted text-center">
+      <%= link_to "#{port.switch.manufacturer} #{port.switch.model}", switch_path(port.switch), class: 'text-muted text-decoration-none' %>
+    </h6>
+
+    <div class="row">
+      <div class="col-auto">
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item"><%= port.description %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <%= link_to "Edit This Port", edit_port_path(port), class: 'small fw-light' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <% if port.portable_type == 'Switch' %>
+      <%= link_to 'Back To Switch', switch_path(port.switch) %>
+    <% end %>
+
+    <% if port.portable_type == 'Slot' %>
+      <%= link_to 'Back To Port', slot_ports_path(port.slot) %>
+    <% end %>
+  </div>
+</div>

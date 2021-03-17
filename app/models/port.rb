@@ -1,4 +1,7 @@
 class Port < ApplicationRecord
+
+  include PortsHelper
+
   belongs_to :portable, polymorphic: true
   has_many :provisioning_records
 
@@ -21,5 +24,4 @@ class Port < ApplicationRecord
   def switch
     self.portable if self.portable_type == 'Switch'
   end
-
 end
