@@ -75,6 +75,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << "proto.goat"
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
 
   # Goat: To fix errors when removing an object with active storage files
   # attached see https://github.com/rails/rails/issues/30937
