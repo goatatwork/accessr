@@ -1,6 +1,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Company name</th>
       <th class="text-center">Service Locations</th>
@@ -11,7 +12,16 @@
   <tbody>
     <% customers.each do |customer| %>
       <tr>
-        <td><%= link_to customer.full_name, customer %></td>
+        <td class="text-end">
+          <% if customer.provisioned? %>
+            <span class="material-icons text-success">beenhere</span>
+          <% else %>
+            <!-- <span class="material-icons-outlined text-muted">tag</span> -->
+          <% end %>
+        </td>
+        <td>
+          <%= link_to customer.full_name, customer %>
+        </td>
         <td><%= customer.company_name %></td>
         <td class="text-center">
           <% if customer.locations.count == 0 %>

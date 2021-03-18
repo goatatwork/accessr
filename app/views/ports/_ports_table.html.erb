@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Port</th>
       <th>Down/Up Rates</th>
       <th class="text-center">Set On Switch</th>
@@ -12,6 +13,13 @@
   <tbody>
     <% ports.each do |port| %>
       <tr>
+        <td class="text-end">
+          <% if port.provisioned? %>
+            <span class="material-icons text-success">beenhere</span>
+          <% else %>
+            <!-- <span class="material-icons-outlined text-muted">tag</span> -->
+          <% end %>
+        </td>
         <td><%= link_to port.name, port_path(port) %></td>
         <td><%= "#{port.down_rate}#{port.rate_unit} / #{port.up_rate}#{port.rate_unit}" %></td>
         <td class="text-center">
