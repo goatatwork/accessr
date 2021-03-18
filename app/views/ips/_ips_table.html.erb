@@ -1,6 +1,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Address</th>
       <th>Pool</th>
       <th colspan="2"></th>
@@ -10,6 +11,13 @@
   <tbody>
     <% ips.each do |ip| %>
       <tr>
+        <td class="text-end">
+          <% if ip.provisioned? %>
+            <span class="material-icons text-success">beenhere</span>
+          <% else %>
+            <!-- <span class="material-icons-outlined text-muted">tag</span> -->
+          <% end %>
+        </td>
         <td><%= link_to ip.address, ip %></td>
         <td><%= ip.pool_id %></td>
         <td><%= link_to 'Edit', edit_ip_path(ip) %></td>

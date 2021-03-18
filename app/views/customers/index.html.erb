@@ -6,4 +6,9 @@
         <%= link_to 'Add A Customer', new_customer_path, class: 'btn btn-success float-end', type: 'button' %>
     </div>
 </div>
-<%= render "customers_table", customers: @customers %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render "customers_table", customers: @customers %>
+  </div>
+</div>

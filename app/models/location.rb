@@ -8,4 +8,8 @@ class Location < ApplicationRecord
   has_many :ports, through: :provisioning_records
 
   accepts_nested_attributes_for :address, allow_destroy: true
+
+  def provisioned?
+    self.provisioning_records.any?
+  end
 end

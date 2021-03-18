@@ -4,6 +4,11 @@
     <div class="col">
       <span class="h4">ONTs</span>
       <%= link_to 'New ONT', new_ont_path, class: 'btn btn-success float-end', type: 'button' %>
-      <%= render 'onts_table', onts: @onts %>
     </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'onts_table', onts: @onts %>
+  </div>
 </div>
