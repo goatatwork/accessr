@@ -15,14 +15,18 @@ module ProvisioningRecordsHelper
     "#{self.ont.manufacturer} #{self.ont.model}" if self.ont.present?
   end
 
-  def display_port
+  def port_name
+    self.port.name if self.port.present?
+  end
+
+  def switch_name
     if self.port.present?
       if self.port.is_slotport?
-        "Slot: #{self.port.slot.slot_number} Port: #{self.port.port_number} Switch: #{self.port.slot.switch.name}"
+        self.port.slot.switch.name
       end
 
       if self.port.is_switchport?
-        "Port: #{self.port.port_number} Switch: #{self.port.switch.name}"
+        self.port.switch.name
       end
     end
   end
