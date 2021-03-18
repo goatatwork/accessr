@@ -4,6 +4,11 @@
     <div class="col">
       <span class="h4">Provisioning Records</span>
       <%= link_to 'Provision Service', new_provisioning_record_path, class: 'btn btn-success float-end', type: 'button' %>
-      <%= render 'provisioning_records_table', provisioning_records: @provisioning_records %>
     </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'provisioning_records_table', provisioning_records: @provisioning_records %>
+  </div>
 </div>
