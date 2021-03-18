@@ -17,6 +17,10 @@ class Port < ApplicationRecord
     self.portable_type == 'Switch'
   end
 
+  def provisioned?
+    return self.provisioning_records.any?
+  end
+
   def slot
     self.portable if self.portable_type == 'Slot'
   end
