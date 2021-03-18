@@ -1,3 +1,16 @@
+// Fonts
+// @import url(https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+
+// Typography
+$font-stack: 'Roboto';
+$font-size-base: 1.5rem;
+
+body {
+    font-family : $font-stack !important;
+    font-size : $font-size-base;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
