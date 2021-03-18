@@ -3,7 +3,7 @@
     <tr>
       <th>Name</th>
       <th>Company name</th>
-      <th>Service Locations</th>
+      <th class="text-center">Service Locations</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -13,7 +13,15 @@
       <tr>
         <td><%= link_to customer.full_name, customer %></td>
         <td><%= customer.company_name %></td>
-        <td><%= customer.locations.count %></td>
+        <td class="text-center">
+          <% if customer.locations.count == 0 %>
+            <span class="small fst-italic">No service locations</span>
+          <% elsif customer.locations.count == 1 %>
+            <%= link_to customer.locations.first.name, location_path(customer.locations.first), class: 'text-dark' %>
+          <% else %>
+            <%= link_to pluralize(customer.locations.count, 'location', 'locations'), customer, class: 'text-dark' %>
+          <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
         <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
