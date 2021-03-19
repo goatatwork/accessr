@@ -28,3 +28,9 @@ services:
       POSTGRES_PASSWORD: password
     networks:
       - ops1
+  redis:
+    image: redis:6.2.1-alpine
+    labels:
+      - traefik.enable=false
+    networks:
+      - ops1
