@@ -30,7 +30,7 @@ class SwitchesController < ApplicationController
         if params[:look_for_ports_via_snmp]
           @switch.add_ports_from_snmp
         end
-
+        format.turbo_stream
         format.html { redirect_to @switch, notice: "Switch was successfully created." }
         format.json { render :show, status: :created, location: @switch }
       else

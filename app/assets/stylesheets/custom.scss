@@ -13,6 +13,11 @@ body {
     font-size : $font-size-base;
 }
 
+turbo-frame {
+  display: block;
+  border: 1px solid blue;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
