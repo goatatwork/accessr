@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :rooms do
+    resources :messages
+  end
+
   resources :provisioning_records
   resources :onts
   resources :dhcp_servers do
