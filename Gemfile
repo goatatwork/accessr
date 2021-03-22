@@ -33,6 +33,7 @@ gem 'net-ssh'
 gem 'net-ssh-telnet'
 gem 'snmp', '~> 1.3', '>= 1.3.2'
 gem 'hotwire-rails'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
