@@ -58,4 +58,10 @@ module ProvisioningRecordsHelper
       end
     end
   end
+
+  def select_switch_array
+    Switch.all.map do |switch|
+      ["#{switch.name}", switch.id]
+    end
+  end
 end
