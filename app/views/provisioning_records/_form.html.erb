@@ -28,27 +28,25 @@
           <%= form.label :ont_id %>
         </div>
 
-        <div id="provisioning_form_channel">
-          <div class="row">
-            <div class="col">
+        <div class="row">
+          <div class="col">
+            <div class="form-floating">
+              <%=  form.select :switch_id,
+                    provisioning_record.select_switch_array,
+                    { include_blank: true },
+                    class: 'form-select',
+                    aria: { label: 'switch-select' }
+              %>
+              <%= form.label :switch_id %>
+            </div>
+          </div>
+          <div class="col">
+            <%= turbo_frame_tag  "ports_list" do %>
               <div class="form-floating">
-                <%=  form.select :switch_id,
-                      provisioning_record.select_switch_array,
-                      { include_blank: true },
-                      class: 'form-select',
-                      aria: { label: 'switch-select' }
-                %>
-                <%= form.label :switch_id %>
+                <%= form.select :port_id, provisioning_record.select_port_array, { include_blank: true }, class: 'form-select', aria: {label: 'port-select'} %>
+                <%= form.label :port_id %>
               </div>
-            </div>
-            <div class="col">
-              <%= turbo_frame_tag  "ports_list" do %>
-                <div class="form-floating">
-                  <%= form.select :port_id, provisioning_record.select_port_array, { include_blank: true }, class: 'form-select', aria: {label: 'port-select'} %>
-                  <%= form.label :port_id %>
-                </div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
 

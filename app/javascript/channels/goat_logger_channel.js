@@ -1,9 +1,9 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("ProvisioningFormChannel", {
+consumer.subscriptions.create("GoatLoggerChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
-    console.log("Connected to ProvisioningFormChannel")
+    console.log("Connected to GoatLoggerChannel")
   },
 
   disconnected() {
@@ -11,7 +11,7 @@ consumer.subscriptions.create("ProvisioningFormChannel", {
   },
 
   received(data) {
-    var wall = document.getElementById('provisioning_form_channel');
+    var wall = document.getElementById('goat_logger_channel');
     wall.innerHTML +=
         "<h2>"+data.name+"</h2>";
   }
