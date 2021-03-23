@@ -89,7 +89,9 @@ Rails.application.configure do
 
   # Goat: To fix errors when removing an object with active storage files
   # attached see https://github.com/rails/rails/issues/30937
-  config.active_job.queue_adapter = :inline
+  # config.active_job.queue_adapter = :inline
+  # Goat: Send to sidekiq as of 20210323
+  config.active_job.queue_adapter = :sidekiq
 
   # Goat: To resolve issue described here:
   # https://github.com/rails/rails/issues/35817

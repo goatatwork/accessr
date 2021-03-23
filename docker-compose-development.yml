@@ -6,11 +6,15 @@ networks:
 
 volumes:
   db_data:
+  redis_data:
   ruby_bundle:
 
 services:
   web:
     image: goatatwork/rails:6.1.3-postgresql
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/0
     volumes:
       - ruby_bundle:/usr/local/bundle
       - ./:/app
@@ -20,6 +24,19 @@ services:
       - ops1
     ports:
       - "3000:3000"
+  sidekiq:
+    image: goatatwork/rails:6.1.3-postgresql
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/0
+    volumes:
+      - ruby_bundle:/usr/local/bundle
+      - ./:/app
+      - /Users/tool/.ssh:/root/.ssh
+    working_dir: /app
+    networks:
+      - ops1
+    command: bundle exec sidekiq
   db:
     image: postgres:13-alpine
     volumes:
@@ -30,6 +47,8 @@ services:
       - ops1
   redis:
     image: redis:6.2.1-alpine
+    volumes:
+      - redis_data:/data
     labels:
       - traefik.enable=false
     networks:

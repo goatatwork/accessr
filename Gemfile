@@ -29,10 +29,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'faker'
+gem 'hotwire-rails'
 gem 'net-ssh'
 gem 'net-ssh-telnet'
 gem 'snmp', '~> 1.3', '>= 1.3.2'
-gem 'hotwire-rails'
+gem 'redis-namespace'
 gem 'sidekiq'
 
 group :development, :test do
