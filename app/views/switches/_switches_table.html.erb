@@ -13,17 +13,19 @@
 
   <tbody>
     <% switches.each do |switch| %>
-      <tr>
-        <td><%= link_to switch.name, switch %></td>
-        <td><%= switch.manufacturer %> | <%= switch.model %></td>
-        <td><%= switch.management_ip %></td>
-        <td class="d-none"><%= switch.slots.count %></td>
-        <td class="d-none"><%= switch.ports.count %></td>
-        <td><%= switch.total_number_of_ports %></td>
-        <td></td>
-        <td><%= link_to 'Edit', edit_switch_path(switch) %></td>
-        <td><%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= turbo_frame_tag dom_id(switch) do %>
+        <tr>
+          <td><%= link_to switch.name, switch %></td>
+          <td><%= switch.manufacturer %> | <%= switch.model %></td>
+          <td><%= switch.management_ip %></td>
+          <td class="d-none"><%= switch.slots.count %></td>
+          <td class="d-none"><%= switch.ports.count %></td>
+          <td><%= switch.total_number_of_ports %></td>
+          <td></td>
+          <td><%= link_to 'Edit', edit_switch_path(switch) %></td>
+          <td><%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
