@@ -4,4 +4,6 @@
     </div>
 </div>
 
-<%= render 'form', switch: @switch %>
+<%= turbo_frame_tag 'switches' do %>
+  <%= render 'form', switch: @switch %>
+<% end %>
