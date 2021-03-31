@@ -1,6 +1,10 @@
 class Switch < ApplicationRecord
   include SwitchesHelper
 
+  after_create_commit -> { broadcast_prepend_to "switches" }
+  after_update_commit -> { broadcast_replace_to "switches" }
+  after_destroy_commit -> { broadcast_remove_to "switches" }
+
   DEFAULT_UP_RATE = 3000
   DEFAULT_DOWN_RATE = 25000
 
