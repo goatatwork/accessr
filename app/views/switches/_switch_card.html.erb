@@ -1,26 +1,28 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title text-center">
-      <%= switch.name %>
-    </h5>
-    <h6 class="card-subtitle mb-4 text-muted text-center">
-      <%= switch.manufacturer %><br><%= switch.model %>
-    </h6>
+<%= turbo_frame_tag dom_id(switch) do %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <%= switch.name %>
+      </h5>
+      <h6 class="card-subtitle mb-4 text-muted text-center">
+        <%= switch.manufacturer %><br><%= switch.model %>
+      </h6>
 
-    <div class="row">
-        <div class="col-auto">
-          <ul class="list-group list-group-flush mb-4">
-            <li class="list-group-item">Manage at <%= switch.management_ip %></li>
-            <li class="list-group-item"><%= pluralize(switch.total_number_of_ports, 'port total', 'ports total') %></li>
-          </ul>
-        </div>
+      <div class="row">
+          <div class="col-auto">
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">Manage at <%= switch.management_ip %></li>
+              <li class="list-group-item"><%= pluralize(switch.total_number_of_ports, 'port total', 'ports total') %></li>
+            </ul>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col text-center">
+            <%= link_to "Edit This Switch", edit_switch_path(switch), data: { "turbo-frame": "_top" }, class: 'small fw-light' %>
+          </div>
+      </div>
+
     </div>
-
-    <div class="row">
-        <div class="col text-center">
-          <%= link_to "Edit This Switch", edit_switch_path(switch), class: 'small fw-light' %>
-        </div>
-    </div>
-
   </div>
-</div>
+<% end %>
