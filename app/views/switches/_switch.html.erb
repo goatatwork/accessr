@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(switch) do %>
   <div class="row">
     <div class="col">
-      <%= link_to switch.name, switch %>
+      <%= link_to switch.name, switch, data: { "turbo-frame": "_top" } %>
     </div>
     <div class="col">
       <%= switch.manufacturer %> | <%= switch.model %>
