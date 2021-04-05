@@ -1,17 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <div class="col">
-
-    <%= turbo_frame_tag 'switch' do %>
-      <%= render 'switch', switch: @switch %>
-    <% end %>
-
-  </div>
-</div>
-
-<div class="row">
     <div class="col-auto">
+
       <%= render "switch_card", {switch: @switch} %>
 
       <%= render 'config_backup_card' %>
