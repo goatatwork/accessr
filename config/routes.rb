@@ -1,4 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
+  mount Sidekiq::Web => '/sidekiq'
+
+  resources :rooms do
+    resources :messages
+  end
 
   resources :provisioning_records
   resources :onts

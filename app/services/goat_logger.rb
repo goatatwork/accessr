@@ -7,5 +7,9 @@ class GoatLogger < ApplicationService
 
   def call
     File.write("goatlog.txt", "#{DateTime.current}: #{@message}\n", mode: "a")
+
+    ActionCable.server.broadcast("goat_logger_channel", {
+      name: @message
+    })
   end
 end

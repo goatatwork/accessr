@@ -72,14 +72,26 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
+
+  # config.action_cable.url = 'wss://proto.goat/cable'
+  # config.action_cable.allowed_request_origins = [ 'http://proto.goat', /http:\/\/*.goat/ ]
+  # config.action_cable.worker_pool_size = 4
+  # config.action_cable.log_tags = [
+  #   -> request { request.env['user_account_id'] || "no-account" },
+  #   :action_cable,
+  #   -> request { request.uuid }
+  # ]
+
 
   config.hosts << "proto.goat"
   config.hosts << /[a-z0-9]+\.ngrok\.io/
 
   # Goat: To fix errors when removing an object with active storage files
   # attached see https://github.com/rails/rails/issues/30937
-  config.active_job.queue_adapter = :inline
+  # config.active_job.queue_adapter = :inline
+  # Goat: Send to sidekiq as of 20210323
+  config.active_job.queue_adapter = :sidekiq
 
   # Goat: To resolve issue described here:
   # https://github.com/rails/rails/issues/35817

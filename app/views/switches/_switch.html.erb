@@ -1,0 +1,29 @@
+<%= turbo_frame_tag dom_id(switch) do %>
+  <div class="row my-2">
+    <div class="col text-center">
+      <%= link_to switch.name, switch, data: { "turbo-frame": "_top" } %>
+    </div>
+    <div class="col text-center">
+      <%= switch.manufacturer %> | <%= switch.model %>
+    </div>
+    <div class="col text-center">
+      <%= switch.management_ip %>
+    </div>
+    <div class="col d-none">
+      <%= switch.slots.count %>
+    </div>
+    <div class="col d-none">
+      <%= switch.ports.count %>
+    </div>
+    <div class="col text-center">
+      <%= switch.total_number_of_ports %>
+    </div>
+
+    <div class="col text-end">
+      <%= link_to 'Edit', edit_switch_path(switch), data: { "turbo-frame": "_top" } %>
+    </div>
+    <div class="col text-start">
+      <%= link_to 'Destroy', switch, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>

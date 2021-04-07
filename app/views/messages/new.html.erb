@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-auto">
+
+    <%= turbo_frame_tag "new_message", target: "_top" do %>
+      <%= form_with(model: [@room, @message]) do |form| %>
+        <div class="row">
+          <div class="col">
+
+            <div class="form-floating mb-3">
+              <%= form.text_area :content, class: 'form-control', placeholder: 'content' %>
+              <%= form.label :content %>
+            </div>
+
+            <%= form.submit class: 'btn btn-success' %>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

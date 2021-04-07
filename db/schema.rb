@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_123105) do
+ActiveRecord::Schema.define(version: 2021_03_19_183201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_123105) do
     t.index ["customer_id"], name: "index_locations_on_customer_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "onts", force: :cascade do |t|
     t.string "name"
     t.string "manufacturer"
@@ -131,6 +139,12 @@ ActiveRecord::Schema.define(version: 2021_03_11_123105) do
     t.index ["location_id"], name: "index_provisioning_records_on_location_id"
     t.index ["ont_id"], name: "index_provisioning_records_on_ont_id"
     t.index ["port_id"], name: "index_provisioning_records_on_port_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shared_networks", force: :cascade do |t|
@@ -187,6 +201,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_123105) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ips", "pools"
   add_foreign_key "locations", "customers"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "pools", "subnets"
   add_foreign_key "provisioning_records", "ips"
   add_foreign_key "provisioning_records", "locations"
