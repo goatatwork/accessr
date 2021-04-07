@@ -33,7 +33,7 @@ module ProvisioningRecordsHelper
 
   def select_ip_array
     Ip.all.map do |ip|
-      [ip.address, ip.id]
+      [ip.address, ip.id] if !ip.provisioned?
     end
   end
 
