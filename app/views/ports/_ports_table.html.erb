@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th></th>
+      <th>Provisioned</th>
       <th>Port</th>
       <th>Down/Up Rates</th>
       <th class="text-center">Set On Switch</th>
@@ -13,7 +13,7 @@
   <tbody>
     <% ports.each do |port| %>
       <tr>
-        <td class="text-end">
+        <td class="text-center">
           <% if port.provisioned? %>
             <span class="material-icons text-success">beenhere</span>
           <% else %>
