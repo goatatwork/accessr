@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-floating">
-          <%= form.select :ip_id, provisioning_record.select_ip_array, { include_blank: true }, class: 'form-select', aria: {label: 'ip-select'} %>
+          <%= form.select :ip_id, provisioning_record.ip_form_select_options, { include_blank: true }, class: 'form-select', aria: {label: 'ip-select'} %>
           <%= form.label :ip_id %>
         </div>
 
