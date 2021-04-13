@@ -8,7 +8,12 @@ class RateLimitApiController < ApplicationController
       if params[:port_name] && @port = @switch.ports.where(name: params[:port_name]).first
         down_rate = params[:down_rate]
         up_rate = params[:up_rate]
-        message = "On the switch at #{@switch.name}, change #{@port.name} to have #{down_rate} down and #{up_rate} up."
+
+        if @port.update(down_rate: down_rate, up_rate: up_rate)
+          SetPortRateLimitJob.perform_later(@port)
+          message = "On #{@switch.name}, setting #{@port.name} to #{down_rate} down and #{up_rate} up."
+        end
+
       end
     end
 
@@ -20,4 +25,11 @@ class RateLimitApiController < ApplicationController
   def show
     render json: {success: true}
   end
+
+  private
+
+    # Only allow a list of trusted parameters through.
+    def port_params
+      params.require(:port).permit(:port_number, :name, :description, :up_rate, :down_rate, :rate_unit)
+    end
 end
