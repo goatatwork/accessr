@@ -56,5 +56,7 @@ Rails.application.routes.draw do
 
   resources :ports, only: [:index, :show, :edit, :update, :destroy]
 
+  get '/api/ports/ratelimit', to: 'rate_limit_api#update'
+
   root 'static_pages#home'
 end
