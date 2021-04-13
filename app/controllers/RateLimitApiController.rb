@@ -2,12 +2,14 @@ class RateLimitApiController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    switch_ip = params[:switch_ip]
-    port_name = params[:port_name]
-    down_rate = params[:down_rate]
-    up_rate = params[:up_rate]
+    message = "updating a rate limit";
 
-    message = "On the switch at #{switch_ip}, change port #{port_name} to have #{down_rate} down and #{up_rate} up."
+    if params[:switch_ip] && @switch = Switch.where(management_ip: params[:switch_ip]).first
+      port_name = params[:port_name]
+      down_rate = params[:down_rate]
+      up_rate = params[:up_rate]
+      message = "On the switch at #{@switch.name}, change port #{port_name} to have #{down_rate} down and #{up_rate} up."
+    end
 
     GoatLogger.call(message)
 
