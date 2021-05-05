@@ -1,0 +1,18 @@
+<h1>Accessx#customers</h1>
+<p>Find me in app/views/accessx/customers.html.erb</p>
+
+<div class="row">
+  <div class="col">
+    The first fifty customers...
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <ul class="list-group list-group-flush">
+      <% @customers.all.each do |customer| %>
+        <li class="list-group-item"><%= customer[:slug] %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

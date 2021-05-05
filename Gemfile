@@ -35,6 +35,8 @@ gem 'net-ssh-telnet'
 gem 'snmp', '~> 1.3', '>= 1.3.2'
 gem 'redis-namespace'
 gem 'sidekiq'
+gem 'pry', '~> 0.13.1'
+gem 'pry-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,3 +64,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "faraday", "~> 1.4"
+gem "faraday_middleware", "~> 1.0"
