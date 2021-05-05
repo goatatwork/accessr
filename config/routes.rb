@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  get 'accessx/index'
+  get 'accessx/customers'
   mount Sidekiq::Web => '/sidekiq'
 
   resources :rooms do
