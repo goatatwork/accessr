@@ -3,6 +3,8 @@ version: '3.8'
 networks:
   ops1:
     external: false
+  accessx_api_net:
+    external: true
 
 volumes:
   db_data:
@@ -22,6 +24,7 @@ services:
     working_dir: /app
     networks:
       - ops1
+      - accessx_api_net
     ports:
       - "3000:3000"
   sidekiq:
