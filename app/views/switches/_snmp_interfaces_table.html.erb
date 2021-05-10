@@ -1,0 +1,54 @@
+<table class="table table-sm table-bordered align-middle">
+  <thead class="text-center">
+    <tr>
+      <th>Index</th>
+      <th>Interface</th>
+      <th>Operational Status</th>
+      <th>Administrative Status</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <% interfaces.each do |interface| %>
+      <tr>
+        <td><%= interface[:ifIndex] %></td>
+        <td><%= interface[:ifDescr] %></td>
+        <td class="small">
+
+          <% if interface[:ifOperStatus] == "1" %>
+
+            <span class="material-icons text-success align-middle" style="font-size:1rem;">
+              circle
+            </span>
+            <span class="text-success align-middle pt-1">
+              UP
+            </span>
+
+          <% elsif interface[:ifOperStatus] == "2" %>
+            <% if interface[:ifAdminStatus] == "1" %>
+              <span class="material-icons text-danger align-middle" style="font-size:1rem;">
+                error
+              </span>
+              <span class="text-danger align-middle pt-1">
+                DOWN
+              </span>
+            <% else %>
+              <span class="material-icons text-muted align-middle" style="font-size:1rem;">
+                horizontal_rule
+              </span>
+            <% end %>
+          <% end %>
+
+        </td>
+        <td class="small">
+
+          <% if interface[:ifAdminStatus] == "1" %>
+            <span class="text-success">Enabled</span>
+          <% elsif interface[:ifAdminStatus] == "2" %>
+            <span class="text-muted">Disabled</span>
+          <% end %>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
