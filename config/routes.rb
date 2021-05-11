@@ -60,7 +60,8 @@ Rails.application.routes.draw do
 
   get '/api/ports/ratelimit', to: 'rate_limit_api#show'
   patch '/api/ports/ratelimit', to: 'rate_limit_api#update'
-  get '/api/ports/enable', to: 'enable_ports#show'
+  patch '/api/ports/enable', to: 'enable_ports_api#update'
+  patch '/api/ports/disable', to: 'disable_ports_api#update'
 
   root 'static_pages#home'
 end
