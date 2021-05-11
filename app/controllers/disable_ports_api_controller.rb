@@ -10,7 +10,7 @@ class DisablePortsApiController < ApplicationController
 
         disabled_at = DateTime.now.in_time_zone
 
-        if @port.update(disabled_at: disabled_at)
+        if @port.update(enabled_at: null, disabled_at: disabled_at)
           EnablePortJob.perform_later(@port)
           message = "Port #{@port.name} on switch #{@switch.name} disabled."
         end
