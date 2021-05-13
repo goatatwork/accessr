@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-    <div class="col-auto">
+  <div class="col">
+    <% if flash[:message] %>
+      <%= flash[:message] %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
 
       <%= render "switch_card", {switch: @switch} %>
 
@@ -9,6 +17,29 @@
     </div>
 
     <div class="col">
+
+      <div class="row">
+        <div class="col">
+          <span class="h4">Things SNMP Told Me</span>
+
+          <div class="row">
+            <div class="col-4">
+              <span class="small">
+                <%= snmp_get_sys_descr @switch.management_ip %>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-auto">
+
+              <%= render "snmp_interfaces_table", { interfaces: snmp_get_if_table(@switch.management_ip) } %>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
 
       <div class="row">
         <div class="col">

@@ -77,9 +77,9 @@
   <div class="fom-group mt-2">
     <%= form.submit class: 'btn btn-success' %>
     <% if switch.persisted? %>
-      <%= link_to 'Cancel', @switch, class: 'btn btn-danger', type: 'button', data: { "turbo-frame": "_top" } %>
+      <%= link_to 'Cancel', @switch, class: 'btn btn-danger', type: 'button' %>
     <% else %>
-      <%= link_to 'Cancel', switches_path, class: 'btn btn-danger', type: 'button', data: { "turbo-frame": "_top" } %>
+      <%= link_to 'Cancel', switches_path, class: 'btn btn-danger', type: 'button' %>
     <% end %>
   </div>
 <% end %>

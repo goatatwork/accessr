@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_183201) do
+ActiveRecord::Schema.define(version: 2021_05_11_164118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_183201) do
     t.integer "down_rate"
     t.string "rate_unit", default: "kb"
     t.datetime "switch_informed"
+    t.datetime "enabled_at"
+    t.datetime "disabled_at"
     t.index ["portable_type", "portable_id"], name: "index_ports_on_portable"
   end
 
