@@ -8,22 +8,29 @@ class DisablePortsApiController < ApplicationController
     if params[:switch_ip] && @switch = Switch.where(management_ip: params[:switch_ip]).first
       if params[:port_name] && @port = @switch.ports.where(name: params[:port_name]).first
 
-        disabled_at = DateTime.now.in_time_zone
+        respond_to do |format|
+          if @port.update(enabled_at: nil, disabled_at: DateTime.now.in_time_zone)
+            DisablePortJob.perform_later(@port)
 
-        if @port.update(enabled_at: null, disabled_at: disabled_at)
-          EnablePortJob.perform_later(@port)
-          message = "Port #{@port.name} on switch #{@switch.name} disabled."
+            GoatLogger.call("Port #{@port.name} on switch #{@switch.name} disabled.")
+
+            flash[:message] = "Port was disabled"
+            format.html { redirect_to switch_path @port.switch }
+
+            # format.json { render :show, status: :ok, location: @port.switch }
+            format.json { render json: {success: message} }
+          else
+            format.html { redirect_to switch_path @port.switch, status: :unprocessable_entity }
+            format.json { render json: {error: message}, status: :unprocessable_entity }
+          end
         end
       end
     end
-
-    GoatLogger.call(message)
-    render json: {success: message}
   end
 
   private
 
     def port_params
-      params.require(:port).permit(:port_number)
+      params.require(:port).permit(:port_number, :switch_ip)
     end
 end

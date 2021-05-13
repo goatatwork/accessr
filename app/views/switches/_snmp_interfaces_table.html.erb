@@ -5,6 +5,7 @@
       <th>Interface</th>
       <th>Operational Status</th>
       <th>Administrative Status</th>
+      <th>Controls</th>
     </tr>
   </thead>
   <tbody class="text-center">
@@ -47,6 +48,21 @@
             <span class="text-muted">Disabled</span>
           <% end %>
 
+        </td>
+        <td>
+          <% if interface[:ifAdminStatus] == "1" %>
+            <%= form_with url: api_ports_disable_path, method: "patch" do |form| %>
+              <%= form.hidden_field :switch_ip, value: "#{@switch.management_ip}" %>
+              <%= form.hidden_field :port_name, value: "#{interface[:ifName]}" %>
+              <%= submit_tag "Disable", class: 'btn btn-sm btn-outline-danger' %>
+            <% end %>
+          <% elsif interface[:ifAdminStatus] == "2" %>
+            <%= form_with url: api_ports_enable_path, method: "patch" do |form| %>
+              <%= form.hidden_field :switch_ip, value: "#{@switch.management_ip}" %>
+              <%= form.hidden_field :port_name, value: "#{interface[:ifName]}" %>
+              <%= submit_tag "Enable", class: 'btn btn-sm btn-outline-success' %>
+            <% end %>
+          <% end %>
         </td>
       </tr>
     <% end %>
