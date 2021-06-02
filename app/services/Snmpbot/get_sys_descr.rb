@@ -16,12 +16,16 @@ module Snmpbot
     end
 
     def get_sys_descr
-      SNMP::Manager.open(:host => @host) do |manager|
-        response = manager.get(["sysDescr.0"])
-        response.each_varbind do |vb|
-          GoatLogger.call("#{vb.value.to_s}")
-          return "#{vb.value.to_s}"
+      begin
+        SNMP::Manager.open(:host => @host) do |manager|
+          response = manager.get(["sysDescr.0"])
+          response.each_varbind do |vb|
+            GoatLogger.call("#{vb.value.to_s}")
+            return "#{vb.value.to_s}"
+          end
         end
+      rescue => error
+        GoatLogger.call("#{error.class}: #{error.message}")
       end
 
     end

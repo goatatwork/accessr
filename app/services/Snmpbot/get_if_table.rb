@@ -18,16 +18,20 @@ module Snmpbot
 
     def get_if_table
       results = Array.new
-      SNMP::Manager.open(:Host => "192.168.99.1") do |manager|
-        manager.walk(["ifIndex", "ifName", "ifDescr", "ifOperStatus", "ifAdminStatus"]) do |ifIndex, ifName, ifDescr, ifOperStatus, ifAdminStatus|
-          results << {
-            :ifIndex => ifIndex.value.to_s,
-            :ifName => ifName.value.to_s,
-            :ifDescr => ifDescr.value.to_s,
-            :ifOperStatus => ifOperStatus.value.to_s,
-            :ifAdminStatus => ifAdminStatus.value.to_s
-          }
+      begin
+        SNMP::Manager.open(:Host => "192.168.99.1") do |manager|
+          manager.walk(["ifIndex", "ifName", "ifDescr", "ifOperStatus", "ifAdminStatus"]) do |ifIndex, ifName, ifDescr, ifOperStatus, ifAdminStatus|
+            results << {
+              :ifIndex => ifIndex.value.to_s,
+              :ifName => ifName.value.to_s,
+              :ifDescr => ifDescr.value.to_s,
+              :ifOperStatus => ifOperStatus.value.to_s,
+              :ifAdminStatus => ifAdminStatus.value.to_s
+            }
+          end
         end
+      rescue => error
+        GoatLogger.call("#{error.class}: #{error.message}")
       end
       return results
       # manager = Manager.new(:Host => @host, :Port => 161)
