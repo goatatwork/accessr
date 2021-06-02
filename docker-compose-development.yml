@@ -39,6 +39,7 @@ services:
     working_dir: /app
     networks:
       - ops1
+      - accessx_api_net
     command: bundle exec sidekiq
   db:
     image: postgres:13-alpine
