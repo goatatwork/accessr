@@ -84,8 +84,10 @@ Rails.application.configure do
   # ]
 
 
-  config.hosts << "proto.goat"
-  config.hosts << /[a-z0-9]+\.ngrok\.io/
+  # config.hosts << "proto.goat"
+  # config.hosts << "proto_web_1"
+  # config.hosts << /[a-z0-9]+\.ngrok\.io/
+  config.hosts.clear
 
   # Goat: To fix errors when removing an object with active storage files
   # attached see https://github.com/rails/rails/issues/30937

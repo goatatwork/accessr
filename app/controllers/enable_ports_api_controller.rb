@@ -17,6 +17,7 @@ class EnablePortsApiController < ApplicationController
 
             flash[:message] = "Port was enabled"
             format.html { redirect_to switch_path @port.switch }
+
             # format.json { render :show, status: :ok, location: @port.switch }
             format.json { render json: {success: message} }
           else

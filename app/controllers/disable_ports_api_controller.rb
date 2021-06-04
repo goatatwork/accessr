@@ -12,7 +12,8 @@ class DisablePortsApiController < ApplicationController
           if @port.update(enabled_at: nil, disabled_at: DateTime.now.in_time_zone)
             DisablePortJob.perform_later(@port)
 
-            GoatLogger.call("Port #{@port.name} on switch #{@switch.name} disabled.")
+            message = "Port #{@port.name} on switch #{@switch.name} disabled."
+            GoatLogger.call(message)
 
             flash[:message] = "Port was disabled"
             format.html { redirect_to switch_path @port.switch }
@@ -24,6 +25,7 @@ class DisablePortsApiController < ApplicationController
             format.json { render json: {error: message}, status: :unprocessable_entity }
           end
         end
+
       end
     end
   end
