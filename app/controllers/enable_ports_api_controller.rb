@@ -5,17 +5,17 @@ class EnablePortsApiController < ApplicationController
   end
 
   def update
+    vlans = params[:vlans]
+
     if params[:switch_ip] && @switch = Switch.where(management_ip: params[:switch_ip]).first
       if params[:port_name] && @port = @switch.ports.where(name: params[:port_name]).first
 
         respond_to do |format|
           if @port.update(enabled_at: DateTime.now.in_time_zone, disabled_at: nil)
-            EnablePortJob.perform_later(@port)
+            # EnablePortJob.perform_later(@port)
+            UnsuspendPortJob.perform_later(@port,vlans)
 
-            message = "Port #{@port.name} on switch #{@switch.name} enabled."
-            GoatLogger.call(message)
-
-            flash[:message] = "Port was enabled"
+            flash[:message] = "Port was unsuspended"
             format.html { redirect_to switch_path @port.switch }
 
             # format.json { render :show, status: :ok, location: @port.switch }
@@ -33,6 +33,6 @@ class EnablePortsApiController < ApplicationController
   private
 
     def port_params
-      params.require(:port).permit(:port_number, :switch_ip)
+      params.require(:port).permit(:port_number, :switch_ip, :vlans)
     end
 end
