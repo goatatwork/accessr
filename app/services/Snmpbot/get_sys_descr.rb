@@ -20,7 +20,7 @@ module Snmpbot
         SNMP::Manager.open(:host => @host) do |manager|
           response = manager.get(["sysDescr.0"])
           response.each_varbind do |vb|
-            GoatLogger.call("#{vb.value.to_s}")
+            # GoatLogger.call("#{vb.value.to_s}")
             return "#{vb.value.to_s}"
           end
         end
