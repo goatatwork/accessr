@@ -12,6 +12,9 @@
           <ul class="list-group list-group-flush mb-4">
             <li class="list-group-item">Hostname: <%= switch.hostname %></li>
             <li class="list-group-item">Manage at <%= switch.management_ip %></li>
+            <li class="list-group-item">SNMP Community
+              <span class="fw-bold"><%= switch.snmp_community %></span>
+            </li>
             <li class="list-group-item"><%= pluralize(switch.total_number_of_ports, 'port total', 'ports total') %></li>
           </ul>
         </div>

@@ -65,6 +65,12 @@
       </div>
     </div>
     <div class="col">
+      <div class="form-floating">
+        <%= form.text_field :snmp_community, class: 'form-control', placeholder: 'snmp_community' %>
+        <%= form.label :snmp_community %>
+      </div>
+    </div>
+    <div class="col">
       <% if !switch.persisted? %>
         <div class="form-check mt-3 ms-2">
           <%= check_box_tag :look_for_ports_via_snmp, 1, false, class: 'form-check-input' %>
