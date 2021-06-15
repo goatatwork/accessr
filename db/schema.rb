@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_164118) do
+ActiveRecord::Schema.define(version: 2021_06_15_205248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 2021_05_11_164118) do
     t.string "hostname"
     t.string "ssh_user"
     t.string "ssh_password"
+    t.string "snmp_community"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
