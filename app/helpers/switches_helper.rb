@@ -20,8 +20,8 @@ module SwitchesHelper
       interfaces
     end
 
-  def snmp_get_if_table(ip)
-    Snmpbot::GetIfTable.call(ip)
+  def snmp_get_if_table(switch)
+    Snmpbot::GetIfTable.call(switch.management_ip, switch.snmp_community)
   end
 
   def snmp_get_sys_descr(ip)
