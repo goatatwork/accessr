@@ -70,6 +70,6 @@ class SwitchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def switch_params
-      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :ssh_user, :ssh_password, :look_for_ports_via_snmp, config_backups: [])
+      params.require(:switch).permit(:name, :hostname, :manufacturer, :model, :management_ip, :snmp_community, :ssh_user, :ssh_password, :look_for_ports_via_snmp, config_backups: [])
     end
 end
