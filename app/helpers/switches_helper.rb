@@ -10,7 +10,7 @@ module SwitchesHelper
     def get_interfaces_from_snmp
       ifTable_columns = ["ifName","ifDescr"]
       interfaces = []
-      SNMP::Manager.open(:host => self.management_ip) do |manager|
+      SNMP::Manager.open(:host => self.management_ip, :community => self.snmp_community) do |manager|
         manager.walk(ifTable_columns) do |row|
           ifName = row.first
           ifDescr = row.last
@@ -24,8 +24,8 @@ module SwitchesHelper
     Snmpbot::GetIfTable.call(switch.management_ip, switch.snmp_community)
   end
 
-  def snmp_get_sys_descr(ip)
-    Snmpbot::GetSysDescr.call(ip)
+  def snmp_get_sys_descr(switch)
+    Snmpbot::GetSysDescr.call(switch.management_ip, switch.snmp_community)
   end
 
 end

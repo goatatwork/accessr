@@ -12,10 +12,14 @@ class DisablePortsApiController < ApplicationController
 
         respond_to do |format|
           if @port.update(enabled_at: nil, disabled_at: DateTime.now.in_time_zone)
-            # DisablePortJob.perform_later(@port)
-            SuspendPortJob.perform_later(@port,vlans)
 
-            flash[:message] = "Port was suspended"
+            if vlans
+              SuspendPortJob.perform_later(@port,vlans)
+            else
+              DisablePortJob.perform_later(@port)
+            end
+
+            flash[:message] = "The port was disabled."
             format.html { redirect_to switch_path @port.switch }
 
             # format.json { render :show, status: :ok, location: @port.switch }
