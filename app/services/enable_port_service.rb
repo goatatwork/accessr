@@ -21,6 +21,12 @@ class EnablePortService < ApplicationService
 
     s = Net::SSH::Telnet.new("Dump_log" => "/dev/null", "Session" => ssh, "Prompt" => %r{#{@switch.hostname}>})
 
+    input_rates = s.cmd({
+      "String" => "show rate-limit input",
+    })
+
+    GoatLogger.call(input_rates)
+
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
     s.cmd({ "String" => "#{@switch.ssh_password}", "Match" => %r{#{@switch.hostname}#} })
