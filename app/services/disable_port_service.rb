@@ -24,8 +24,12 @@ class DisablePortService < ApplicationService
     input_rates = s.cmd({
       "String" => "show rate-limit input",
     })
+    output_rates = s.cmd({
+      "String" => "show rate-limit output-shaping",
+    })
 
     GoatLogger.call(input_rates)
+    GoatLogger.call(output_rates)
 
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
