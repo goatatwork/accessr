@@ -44,7 +44,7 @@ class DisablePortService < ApplicationService
     s.cmd("exit")
     s.cmd("exit")
 
-    GoatLogger.call("\n\#\#\#\n#{@port.name} has been disabled.\n\#\#\#")
+    GoatLogger.call("#{@port.name} has been disabled.")
     @port.update_attribute(:switch_informed, DateTime.now)
   end
 end
