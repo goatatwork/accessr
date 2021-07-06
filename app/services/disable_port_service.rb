@@ -21,6 +21,16 @@ class DisablePortService < ApplicationService
 
     s = Net::SSH::Telnet.new("Dump_log" => "/dev/null", "Session" => ssh, "Prompt" => %r{#{@switch.hostname}>})
 
+    input_rates = s.cmd({
+      "String" => "show rate-limit input",
+    })
+    output_rates = s.cmd({
+      "String" => "show rate-limit output-shaping",
+    })
+
+    GoatLogger.call(input_rates)
+    GoatLogger.call(output_rates)
+
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
     s.cmd({ "String" => "#{@switch.ssh_password}", "Match" => %r{#{@switch.hostname}#} })
@@ -34,7 +44,7 @@ class DisablePortService < ApplicationService
     s.cmd("exit")
     s.cmd("exit")
 
-    GoatLogger.call("\n\#\#\#\n#{@port.name} has been disabled.\n\#\#\#")
+    GoatLogger.call("#{@port.name} has been disabled.")
     @port.update_attribute(:switch_informed, DateTime.now)
   end
 end

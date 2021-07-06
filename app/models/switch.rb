@@ -1,5 +1,6 @@
 class Switch < ApplicationRecord
   include SwitchesHelper
+  include Accessr::TalksToHardware
 
   after_create_commit -> { broadcast_prepend_to "switches" }
   after_update_commit -> { broadcast_replace_to "switches" }
@@ -15,5 +16,12 @@ class Switch < ApplicationRecord
 
   def total_number_of_ports
     self.ports.count + self.slot_ports.count
+  end
+
+  def start_ssh_session
+
+    new_ssh = SshConnector.new(self)
+    new_ssh.start_session
+
   end
 end
