@@ -1,4 +1,4 @@
-require 'net/ssh/telnet'
+# require 'net/ssh/telnet'
 
 class UnsuspendPortService < ApplicationService
 
@@ -13,20 +13,13 @@ class UnsuspendPortService < ApplicationService
   end
 
   def unsuspend_port
-    ssh = Net::SSH.start(@switch.management_ip, @switch.ssh_user,
-      password: @switch.ssh_password,
-      config: true,
-      host_key: '+ssh-dss',
-      kex: '+diffie-hellman-group1-sha1'
-    )
+    s = @switch.start_ssh_session
 
-    s = Net::SSH::Telnet.new("Dump_log" => "/dev/null", "Session" => ssh, "Prompt" => %r{#{@switch.hostname}>})
+    # output_rates = s.cmd({
+    #   "String" => "show rate-limit output-shaping",
+    # })
 
-    input_rates = s.cmd({
-      "String" => "show rate-limit input",
-    })
-
-    GoatLogger.call(input_rates)
+    # GoatLogger.call(output_rates)
 
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
