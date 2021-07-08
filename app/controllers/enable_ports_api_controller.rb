@@ -5,19 +5,13 @@ class EnablePortsApiController < ApplicationController
   end
 
   def update
-    vlans = params[:vlans]
-
     if params[:switch_ip] && @switch = Switch.where(management_ip: params[:switch_ip]).first
       if params[:port_name] && @port = @switch.ports.where(name: params[:port_name]).first
 
         respond_to do |format|
-          if @port.update(enabled_at: DateTime.now.in_time_zone, disabled_at: nil)
+          if @port.update(enabled_at: DateTime.now.in_time_zone)
 
-            if vlans
-              UnsuspendPortJob.perform_later(@port,vlans)
-            else
-              EnablePortJob.perform_later(@port)
-            end
+            EnablePortJob.perform_later(@port)
 
             flash[:message] = "The port was enabled."
             format.html { redirect_to switch_path @port.switch }
@@ -37,6 +31,6 @@ class EnablePortsApiController < ApplicationController
   private
 
     def port_params
-      params.require(:port).permit(:port_number, :switch_ip, :vlans)
+      params.require(:port).permit(:port_number, :switch_ip)
     end
 end
