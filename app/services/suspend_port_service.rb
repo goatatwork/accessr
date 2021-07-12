@@ -15,12 +15,6 @@ class SuspendPortService < ApplicationService
   def suspend_port
     s = @switch.start_ssh_session
 
-    # input_rates = s.cmd({
-    #   "String" => "show rate-limit input",
-    # })
-
-    # GoatLogger.call(input_rates)
-
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })
     s.cmd({ "String" => "#{@switch.ssh_password}", "Match" => %r{#{@switch.hostname}#} })
