@@ -2,6 +2,8 @@ require 'net/ssh/telnet'
 
 class EnablePortService < ApplicationService
 
+  include Accessr::TalksToHardware
+
   def initialize(port, switch)
     @port = port
     @switch = switch
@@ -12,24 +14,9 @@ class EnablePortService < ApplicationService
   end
 
   def enable_port
-    ssh = Net::SSH.start(@switch.management_ip, @switch.ssh_user,
-      password: @switch.ssh_password,
-      config: true,
-      host_key: '+ssh-dss',
-      kex: '+diffie-hellman-group1-sha1'
-    )
+    GoatLogger.call("Enabling #{@port.name}:#{@port.id} on #{@switch.management_ip}:#{@switch.id}")
 
-    s = Net::SSH::Telnet.new("Dump_log" => "/dev/null", "Session" => ssh, "Prompt" => %r{#{@switch.hostname}>})
-
-    input_rates = s.cmd({
-      "String" => "show rate-limit input",
-    })
-    output_rates = s.cmd({
-      "String" => "show rate-limit output-shaping",
-    })
-
-    GoatLogger.call(input_rates)
-    GoatLogger.call(output_rates)
+    s = @switch.start_ssh_session
 
     s.cmd({ "String" => "enable", "Match" => %r{User Name:} })
     s.cmd({ "String" => "#{@switch.ssh_user}", "Match" => %r{Password:} })

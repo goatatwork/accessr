@@ -1,19 +1,21 @@
-class DisablePortsApiController < ApplicationController
+class SuspendPortsApiController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
   end
 
   def update
+    vlans = params[:vlans]
+
     if params[:switch_ip] && @switch = Switch.where(management_ip: params[:switch_ip]).first
       if params[:port_name] && @port = @switch.ports.where(name: params[:port_name]).first
 
         respond_to do |format|
-          if @port.update(disabled_at: DateTime.now.in_time_zone)
+          if @port.update(suspended_at: DateTime.now.in_time_zone)
 
-            DisablePortJob.perform_later(@port)
+            SuspendPortJob.perform_later(@port,vlans)
 
-            flash[:message] = "The port was disabled."
+            flash[:message] = "The port was suspended."
             format.html { redirect_to switch_path @port.switch }
 
             # format.json { render :show, status: :ok, location: @port.switch }
@@ -31,6 +33,6 @@ class DisablePortsApiController < ApplicationController
   private
 
     def port_params
-      params.require(:port).permit(:port_number, :switch_ip)
+      params.require(:port).permit(:port_number, :switch_ip, :vlans)
     end
 end
