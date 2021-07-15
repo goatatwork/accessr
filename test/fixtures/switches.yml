@@ -1,13 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  manufacturer: MyString
-  model: MyString
-  management_ip: MyString
+basement-6610:
+  name: "basement-6610"
+  manufacturer: Brocade
+  model: "ICX6610"
+  management_ip: "192.168.99.1"
+  hostname: "ICX6610-48P"
+  ssh_user: "admin"
+  ssh_password: "password"
+  snmp_community: "public"
 
-two:
-  name: MyString
-  manufacturer: MyString
-  model: MyString
-  management_ip: MyString
+basement-6610-2:
+  name: "basement-6610-2"
+  manufacturer: Brocade
+  model: "ICX6610"
+  management_ip: "192.168.99.254"
+  hostname: "ICX6610-48P"
+  ssh_user: "admin"
+  ssh_password: "password"
+  snmp_community: "public"
