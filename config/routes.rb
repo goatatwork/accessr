@@ -61,15 +61,13 @@ Rails.application.routes.draw do
   get '/api/ports/ratelimit', to: 'rate_limit_api#show'
   patch '/api/ports/ratelimit', to: 'rate_limit_api#update'
 
-  namespace :api do
-    patch 'ports/enable', to: 'enable_ports_api#update'
-    patch 'ports/disable', to: 'disable_ports_api#update'
+  patch '/api/ports/enable', to: 'enable_ports_api#update'
+  patch '/api/ports/disable', to: 'disable_ports_api#update'
 
-    patch 'ports/unsuspend', to: 'unsuspend_ports_api#update'
-    patch 'ports/suspend', to: 'suspend_ports_api#update'
+  patch '/api/ports/unsuspend', to: 'unsuspend_ports_api#update'
+  patch '/api/ports/suspend', to: 'suspend_ports_api#update'
 
-    patch 'ports/subscriber_id', to: 'subscriber_id_api#update'
-  end
+  patch '/api/ports/subscriber_id', to: 'subscriber_id_api#update'
 
   root 'static_pages#home'
 end
