@@ -61,6 +61,15 @@
 
         <div class="row">
           <div class="col">
+            <div class="form-floating mb-3">
+              <%= form.text_field :subscriber_id, class: 'form-control', placeholder: 'subscriber_id' %>
+              <%= form.label :subscriber_id, "Subscriber-id" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
             <div class="actions">
               <%= form.submit class: 'btn btn-success' %>
               <% if port.persisted? %>
