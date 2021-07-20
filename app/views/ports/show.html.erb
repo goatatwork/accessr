@@ -5,6 +5,15 @@
       <%= render 'port_card', port: @port %>
     </div>
     <div class="col">
-      port info
+
+      <% if @port.suspended? %>
+        <div class="row">
+          <div class="col">
+            This port has been suspended since <%= @port.suspended_at %>
+          </div>
+        </div>
+      <% end %>
+
     </div>
 </div>
+
