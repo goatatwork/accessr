@@ -16,6 +16,20 @@
     </div>
 
     <div class="row">
+      <div class="col-auto">
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">up_rate <%= port.up_rate %> (<%= port.rate_unit %>)</li>
+          <li class="list-group-item">down_rate <%= port.down_rate %> (<%= port.rate_unit %>)</li>
+          <li class="list-group-item">enabled_at <%= port.enabled_at %></li>
+          <li class="list-group-item">disabled_at <%= port.disabled_at %></li>
+          <li class="list-group-item">suspended_at <%= port.suspended_at %></li>
+          <li class="list-group-item">unsuspended_at <%= port.unsuspended_at %></li>
+          <li class="list-group-item">subscriber_id <%= port.subscriber_id %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col text-center">
         <%= link_to "Edit This Port", edit_port_path(port), class: 'small fw-light' %>
       </div>
