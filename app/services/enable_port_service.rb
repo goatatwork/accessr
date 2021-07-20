@@ -32,6 +32,5 @@ class EnablePortService < ApplicationService
     s.cmd("exit")
 
     GoatLogger.call("#{@port.name} has been enabled.")
-    @port.update_attribute(:switch_informed, DateTime.now)
   end
 end

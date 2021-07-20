@@ -36,6 +36,5 @@ class SetPortSubscriberIdService < ApplicationService
     s.cmd("exit")
 
     GoatLogger.call("Finished setting #{@port.name} subscriber-id to #{@subscriber_id} on switch at #{@switch.management_ip}")
-    # @port.update_attribute(:switch_informed, DateTime.now)
   end
 end
