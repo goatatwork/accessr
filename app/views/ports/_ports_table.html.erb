@@ -4,7 +4,7 @@
       <th>Provisioned</th>
       <th>Port</th>
       <th>Down/Up Rates</th>
-      <th class="text-center">Set On Switch</th>
+      <th class="text-center">Suspended</th>
       <th>Belongs To</th>
       <th colspan="2"></th>
     </tr>
@@ -23,10 +23,10 @@
         <td><%= link_to port.name, port_path(port) %></td>
         <td><%= "#{port.down_rate}#{port.rate_unit} / #{port.up_rate}#{port.rate_unit}" %></td>
         <td class="text-center">
-          <% if port.switch_informed %>
-            <%= port.switch_informed %>
+          <% if port.suspended? %>
+            Yes
           <% else %>
-            <span class="fst-italic small">Never</span>
+            No
           <% end %>
         </td>
         <td><%= link_to port.portable.name, port.portable %></td>

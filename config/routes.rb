@@ -67,5 +67,7 @@ Rails.application.routes.draw do
   patch '/api/ports/unsuspend', to: 'unsuspend_ports_api#update'
   patch '/api/ports/suspend', to: 'suspend_ports_api#update'
 
+  patch '/api/ports/subscriber_id', to: 'subscriber_id_api#update'
+
   root 'static_pages#home'
 end

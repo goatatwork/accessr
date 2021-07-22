@@ -88,6 +88,6 @@ class PortsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def port_params
-      params.require(:port).permit(:port_number, :name, :description, :up_rate, :down_rate, :rate_unit)
+      params.require(:port).permit(:port_number, :name, :description, :up_rate, :down_rate, :rate_unit, :subscriber_id)
     end
 end

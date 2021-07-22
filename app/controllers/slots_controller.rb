@@ -58,7 +58,7 @@ class SlotsController < ApplicationController
   def destroy
     @slot.destroy
     respond_to do |format|
-      format.html { redirect_to slots_url, notice: "Slot was successfully destroyed." }
+      format.html { redirect_to slot_url, notice: "Slot was successfully destroyed." }
       format.json { head :no_content }
     end
   end

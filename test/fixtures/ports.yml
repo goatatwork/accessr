@@ -2,14 +2,32 @@
 
 one:
   port_number: 1
-  name: MyString
-  description: MyText
+  name: "port 1"
+  description: "This is a description of port 1"
   portable: one
-  portable_type: Portable
+  portable_type: Switch
+  up_rate: 25000
+  down_rate: 25000
+  rate_unit: "kb"
+  enabled_at: 2003-07-16t15:28:11.2233+01:00
+  disabled_at: 2003-07-16t15:28:11.2233+01:00
+  suspended_at: 2003-07-16t15:28:11.2233+01:00
+  unsuspended_at: 2003-07-16t15:28:11.2233+01:00
+  subscriber_id: "subscriber-id-for-port-one"
+  portable: basement-6610
 
 two:
-  port_number: 1
-  name: MyString
-  description: MyText
+  port_number: 2
+  name: "port 2"
+  description: "This is a description of port 1"
   portable: two
-  portable_type: Portable
+  portable_type: Switch
+  up_rate: 25000
+  down_rate: 25000
+  rate_unit: "kb"
+  enabled_at: 2003-07-16t15:28:11.2233+01:00
+  disabled_at: 2003-07-16t15:28:11.2233+01:00
+  suspended_at: 2003-07-16t15:28:11.2233+01:00
+  unsuspended_at: 2003-07-16t15:28:11.2233+01:00
+  subscriber_id: "subscriber-id-for-port-two"
+  portable: basement-6610-2

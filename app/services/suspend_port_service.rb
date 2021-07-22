@@ -31,8 +31,6 @@ class SuspendPortService < ApplicationService
     write_mem_output = s.cmd({ "String" => "write mem", "Match" => %r{#{@switch.hostname}#} })
     s.cmd("exit")
     s.cmd("exit")
-
-    @port.update_attribute(:switch_informed, DateTime.now)
   end
 
   def vlans_array
