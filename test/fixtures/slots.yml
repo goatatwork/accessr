@@ -2,12 +2,12 @@
 
 ICX7450_1:
   slot_number: 1
-  name: MyString
+  name: ICX7450_1
   description: MyText
   switch: basement-stack-1
 
 ICX7450_2:
   slot_number: 2
-  name: MyString
+  name: ICX7450_2
   description: MyText
   switch: basement-stack-1
