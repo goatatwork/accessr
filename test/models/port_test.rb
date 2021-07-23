@@ -13,7 +13,14 @@ class PortTest < ActiveSupport::TestCase
   end
 
   test "should know if it does not have provisioning records" do
-    assert_not ips(:three).provisioned?
+    assert_not ports(:three).provisioned?
   end
 
+  test "should know if it is a slot port" do
+    assert ports(:slot_port_1).is_slotport?
+  end
+
+  test "should know if it is not a slot port" do
+    assert_not ports(:three).is_slotport?
+  end
 end
