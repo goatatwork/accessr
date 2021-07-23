@@ -12,7 +12,11 @@ class CustomerTest < ActiveSupport::TestCase
     end
   end
 
-  test "there should be two fixture customers" do
-    assert_equal 2, Customer.count
+  test "should know if it has provisioning records" do
+    assert customers(:one).provisioned?
+  end
+
+  test "should know if it does not have provisioning records" do
+    assert_not customers(:three).provisioned?
   end
 end
