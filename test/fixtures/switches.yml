@@ -19,3 +19,13 @@ basement-6610-2:
   ssh_user: "admin"
   ssh_password: "password"
   snmp_community: "public"
+
+basement-stack-1:
+  name: "basement-stack-1"
+  manufacturer: Brocade
+  model: "ICX7450"
+  management_ip: "192.168.99.2"
+  hostname: "ICX7450-1"
+  ssh_user: "admin"
+  ssh_password: "password"
+  snmp_community: "public"

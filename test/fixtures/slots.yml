@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+ICX7450_1:
   slot_number: 1
   name: MyString
   description: MyText
-  switch: one
+  switch: basement-stack-1
 
-two:
-  slot_number: 1
+ICX7450_2:
+  slot_number: 2
   name: MyString
   description: MyText
-  switch: two
+  switch: basement-stack-1
