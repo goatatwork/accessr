@@ -59,3 +59,18 @@ slot_port_1:
   suspended_at: 2003-07-16t15:28:11.2233+01:00
   unsuspended_at: 2003-07-16t15:28:11.2233+01:00
   subscriber_id: "subscriber-id-for-port-1"
+
+switch_port_1:
+  port_number: 1
+  name: "port 1"
+  description: "basement_stack_1 Port 1"
+  portable: basement_stack_1
+  portable_type: Switch
+  up_rate: 25000
+  down_rate: 25000
+  rate_unit: "kb"
+  enabled_at: 2003-07-16t15:28:11.2233+01:00
+  disabled_at: 2003-07-16t15:28:11.2233+01:00
+  suspended_at: 2003-07-16t15:28:11.2233+01:00
+  unsuspended_at: 2003-07-16t15:28:11.2233+01:00
+  subscriber_id: "subscriber-id-for-port-1"

@@ -4,10 +4,10 @@ ICX7450_1:
   slot_number: 1
   name: ICX7450_1
   description: MyText
-  switch: basement-stack-1
+  switch: basement_stack_1
 
 ICX7450_2:
   slot_number: 2
   name: ICX7450_2
   description: MyText
-  switch: basement-stack-1
+  switch: basement_stack_1
