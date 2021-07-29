@@ -48,7 +48,7 @@ module Accessr
           element.match("rate-limit input fixed")
         end
 
-        the_value = current_setting[0].delete_prefix("rate-limit input fixed ") if current_setting.count
+        the_value = current_setting.first.delete_prefix("rate-limit input fixed ") if current_setting.first
 
         @facts[:input_rate_limit] = the_value
 
@@ -62,7 +62,7 @@ module Accessr
           element.match("rate-limit output shaping")
         end
 
-        the_value = current_setting[0].delete_prefix("rate-limit output shaping ") if current_setting.count
+        the_value = current_setting.first.delete_prefix("rate-limit output shaping ") if current_setting.first
 
         @facts[:output_rate_limit] = the_value
 

@@ -37,12 +37,19 @@ class UnsuspendPortService < ApplicationService
 
     s.cmd({ "String" => "config t", "Match" => %r{\(config\)#$} })
 
-    s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+    if input_rate
+      GoatLogger.call("Temporarily removing input rate-limit from port #{@port.name}")
+      s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "no rate-limit input fixed #{input_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    end
 
-    s.cmd({ "String" => "no rate-limit input fixed #{input_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
-    s.cmd({ "String" => "no rate-limit output shaping #{output_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
-
-    s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    if output_rate
+      GoatLogger.call("Temporarily removing output rate-limit from port #{@port.name}")
+      s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "no rate-limit output shaping #{output_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    end
 
     vlans_array.each do |vlan|
       s.cmd({ "String" => "vlan #{vlan}", "Match" => %r{config-vlan-#{vlan}\)#$} })
@@ -51,10 +58,19 @@ class UnsuspendPortService < ApplicationService
       GoatLogger.call(output)
     end
 
-    s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
-    s.cmd({ "String" => "rate-limit input fixed #{input_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
-    s.cmd({ "String" => "rate-limit output shaping #{output_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
-    s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    if input_rate
+      GoatLogger.call("Re-inserting input rate-limit from port #{@port.name}")
+      s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "rate-limit input fixed #{input_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    end
+
+    if output_rate
+      GoatLogger.call("Re-inserting output rate-limit from port #{@port.name}")
+      s.cmd({ "String" => "interface #{@port.name}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "rate-limit output shaping #{output_rate}", "Match" => %r{#{@port.name.delete_prefix('ethernet')}\)#$} })
+      s.cmd({ "String" => "exit", "Match" => %r{\(config\)#$} })
+    end
 
     s.cmd({ "String" => "exit", "Match" => %r{#{@switch.hostname}#} })
     write_mem_output = s.cmd({ "String" => "write mem", "Match" => %r{#{@switch.hostname}#} })

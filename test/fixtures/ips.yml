@@ -7,3 +7,7 @@ one:
 two:
   address: MyString
   pool: two
+
+three:
+  address: 192.168.1.1
+  pool: three

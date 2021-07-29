@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   customer: two
+
+three:
+  name: MyString
+  customer: three

@@ -14,14 +14,13 @@ class Switch < ApplicationRecord
   has_many :slot_ports, through: :slots, source: :ports
   has_many :switch_configs
 
+  def start_ssh_session
+    new_ssh = SshConnector.new(self)
+    new_ssh.start_session
+  end
+
   def total_number_of_ports
     self.ports.count + self.slot_ports.count
   end
 
-  def start_ssh_session
-
-    new_ssh = SshConnector.new(self)
-    new_ssh.start_session
-
-  end
 end
